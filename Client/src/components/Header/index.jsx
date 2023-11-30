@@ -1,19 +1,22 @@
 import { Link } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Button from 'react-bootstrap/Button';
+
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMessage, faBars, faComment } from "@fortawesome/free-solid-svg-icons"
+import { faMessage, faBars } from "@fortawesome/free-solid-svg-icons"
+import { useState } from 'react';
 // import Auth from '../../utils/auth';
 // import Searchbar from './Searchbar';
-// import CartBtn from './CartBtn';
 
-export default function Header () {
+export default function Header ({ showMenu, setShowMenu}) {
   // const logout = (e) => {
   //   e.preventDefault();
   //   Auth.logout();
   // };
+
+  
+
+  const handleMenu = () => setShowMenu(!showMenu);
 
   return (
     <Nav className='bg-dark d-flex justify-content-between'>
@@ -30,7 +33,7 @@ export default function Header () {
         </Nav.Item>
         <Nav.Item className='p-1'>
           <Nav.Link >
-            <FontAwesomeIcon icon={faBars} style={{color: "#ffffff",}} className='menu-icon'/>
+            <FontAwesomeIcon icon={faBars} style={{color: "#ffffff",}} className='menu-icon' onClick={handleMenu}/>
           </Nav.Link>
         </Nav.Item>
       </div>
