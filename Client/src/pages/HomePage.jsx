@@ -2,6 +2,7 @@ import Header from '../components/Header/index'
 import { useState } from 'react';
 import HomeMenu from '../components/HomeMenu';
 import Feed from '../components/Feed';
+import Footer from '../components/Footer/index'
 
 
 export default function HomePage() {
@@ -11,6 +12,7 @@ export default function HomePage() {
     <>
       <Header showMenu={showMenu} setShowMenu={setShowMenu}/>
       {showMenu ? <HomeMenu/> : <Feed/>}
+      <Footer/>
     </>
   );
 }
