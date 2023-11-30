@@ -2,7 +2,7 @@ export default function ProfileSectionToggle ({ setProfileSection, profileSectio
 
 
   return (
-    <div className="d-flex">
+    <div className="toggle-container px-4">
       <button onClick={() => setProfileSection(profileSections[0])}>feed</button>
       <button onClick={() => setProfileSection(profileSections[1])}>progress</button>
       <button onClick={() => setProfileSection(profileSections[2])}>friends</button>
