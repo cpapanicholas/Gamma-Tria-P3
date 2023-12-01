@@ -5,6 +5,11 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const userSchema = new Schema({
+    userId: {
+        id: String,
+        required: true,
+        unique: true,
+    },
     firstName: {
         type: String,
         required: true,
@@ -36,6 +41,16 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 5,
+    },
+    status: {
+        type: {
+            text: String,
+            timestamp: Date,
+        },
+        default: {
+            text: 'not at gym',
+            timestamp: null,
+        },
     },
     posts: [
         {
