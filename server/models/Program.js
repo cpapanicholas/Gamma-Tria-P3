@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const programSchema = new Schema({
     programId: {
-        id: String,
+        type: String,
         required: true,
         unique: true,
     },
