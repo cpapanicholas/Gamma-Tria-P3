@@ -1,6 +1,24 @@
 const { User, Post, Program, Workout, Friend } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const { createWriteStream } = require('fs');
+const { resolve } = require('path');
+const { graphqlUploadExpress } = require('graphql-upload');
 
+const processUpload = async (file, subdirectory) => {
+  const { createReadStream, filename } = await file;
+
+  // Specify the path to store the uploaded file
+  const filePath = resolve(__dirname, 'uploads', subdirectory, filename);
+
+  // Create a writable stream and pipe the read stream to it
+  const writeStream = createWriteStream(filePath);
+  await new Promise((resolve) =>
+    createReadStream().pipe(writeStream).on('finish', resolve)
+  );
+
+  // Return the file path or URL
+  return filePath; // Adjust this based on your needs
+};
 const resolvers = {
   Query: {
     getAllUsers: async () => {
@@ -163,6 +181,9 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    uploadFile: async (_, { file }) => {
+      return processUpload(file, 'uploads');
+    },
     addFriend: async (parent, { friendId }, context) => {
       if (context.user) {
         const friend = await Friend.create({
@@ -177,7 +198,7 @@ const resolvers = {
 
         return friend;
       }
-      throw AuthenticationError;
+      throw AuthenticationError
       ('You need to be logged in!');
     },
   },

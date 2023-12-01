@@ -100,6 +100,7 @@ const typeDefs = `
     createProgram(name: String!, workoutIds: [ID!]!): Program
     addProgram(programI: ID!): Program
     addFriend(friendId: ID!): Friend
+    uploadFile(file: Upload!): String!
   }
 `;
 
