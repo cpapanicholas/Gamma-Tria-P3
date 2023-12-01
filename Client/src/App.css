@@ -1,13 +1,46 @@
 .nav-link {
   color: white!important;
-  font-size: 30px!important;
+  font-size: 26px!important;
 }
 
 .message-icon {
-  font-size: 40px;
+  font-size: 36px;
   padding-top: .8rem;
 }
 
 .menu-icon {
-  font-size: 45px;
+  font-size: 40px;
+}
+
+.profile-portrait {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.profile-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+}
+
+.toggle-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+}
+
+.footer-icon {
+  font-size: 35px;
+}
+
+.feed-post {
+  height: 200px;
+  margin: 20px 10px;
+}
+
+.menu-option {
+  height: 80px;
 }
