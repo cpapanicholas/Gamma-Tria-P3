@@ -98,9 +98,10 @@ const typeDefs = `
     removeComment(postId: ID!, commentId: ID!): Post
     createWorkout(input: ExerciseInput): Workout
     createProgram(name: String!, workoutIds: [ID!]!): Program
-    addProgram(programI: ID!): Program
+    addProgram(programId: ID!): Program
     addFriend(friendId: ID!): Friend
     uploadFile(file: Upload!): String!
+    removeFriend(friendId: ID!): RemoveFriendResponse
   }
 `;
 

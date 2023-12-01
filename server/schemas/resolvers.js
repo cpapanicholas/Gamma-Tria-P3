@@ -150,7 +150,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    createWorkout: async (parent, { input }) => {
+    createWorkout: async (parent, { input }, context) => {
       try {
         const workout = await Workout.create(input);
 
@@ -176,7 +176,7 @@ const resolvers = {
       if (context.user) {
         return User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { programs: programID } }
+          { $addToSet: { programs: programId } }
         );
       }
       throw AuthenticationError;
@@ -200,6 +200,29 @@ const resolvers = {
       }
       throw AuthenticationError
       ('You need to be logged in!');
+    },
+    removeFriend: async (parent, { friendId }, context) => {
+      if (context.user) {
+        try {
+          // Remove friend entry
+          await Friend.findOneAndDelete({
+            _id: friendId,
+            userId: context.user._id,
+          });
+
+          // Update user's friends array
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { friends: friendId } }
+          );
+
+          return { success: true, message: 'Friend removed successfully' };
+        } catch (error) {
+          console.error(error);
+          return { success: false, message: 'Error removing friend' };
+        }
+      }
+      throw AuthenticationError;
     },
   },
 };
