@@ -107,4 +107,8 @@ module.exports = typeDefs;
 
 
 // addUser(firstName: String!, lastName: String!, Username: String!, email: String!, password: String!): Auth
+<<<<<<< HEAD
 // addUser(input: UserInput): Auth
+=======
+// addUser(input: UserInput): Auth
+>>>>>>> main

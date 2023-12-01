@@ -183,4 +183,8 @@ const resolvers = {
   },
 };
 
+<<<<<<< HEAD
 module.exports = resolvers;
+=======
+module.exports = resolvers;
+>>>>>>> main
