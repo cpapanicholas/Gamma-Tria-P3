@@ -6,7 +6,7 @@ const validator = require('validator');
 
 const userSchema = new Schema({
     userId: {
-        id: String,
+        type: String,
         required: true,
         unique: true,
     },

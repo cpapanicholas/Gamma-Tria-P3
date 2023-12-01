@@ -100,13 +100,14 @@ const typeDefs = `
     createProgram(name: String!, workoutIds: [ID!]!): Program
     addProgram(programId: ID!): Program
     addFriend(friendId: ID!): Friend
-    uploadFile(file: Upload!): String!
-    removeFriend(friendId: ID!): RemoveFriendResponse
   }
-`;
-
-module.exports = typeDefs;
-
-
-// addUser(firstName: String!, lastName: String!, Username: String!, email: String!, password: String!): Auth
-// addUser(input: UserInput): Auth
+  `;
+  
+  module.exports = typeDefs;
+  
+  
+  // addUser(firstName: String!, lastName: String!, Username: String!, email: String!, password: String!): Auth
+  // addUser(input: UserInput): Auth
+  
+  // uploadFile(file: Upload!): String!
+  // removeFriend(friendId: ID!): RemoveFriendResponse
