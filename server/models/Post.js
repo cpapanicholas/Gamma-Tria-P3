@@ -9,8 +9,8 @@ const postSchema = new Schema({
         ref: 'User', // Reference to the User model
         required: true,
     },
-    picture: {
-        type: String, // You can store the URL or file path of the picture
+    mediaUrl: {
+        type: String,
         required: true,
     },
     userComment: {
