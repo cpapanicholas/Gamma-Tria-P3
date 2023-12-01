@@ -1,28 +1,42 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Stack from 'react-bootstrap/Stack';
+import React, { useState } from 'react';
 
-function CombinedExample() {
+const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('all'); // Default filter value
+
+  const handleSearch = () => {
+    // Perform the search logic here using 'searchTerm' and 'filter'
+    console.log('Searching for:', searchTerm, 'with filter:', filter);
+  };
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  };
+
   return (
-    <>
-      <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Control type="text" placeholder="search" />
-        </Form.Group>
-      </Form>
+    <header>
+        
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button onClick={handleSearch}>Search</button>
 
-      <Button variant="primary" size="lg" active>
-        Search
-      </Button>
-
-      <Stack gap={3}>
-        <div className="p-2">First item</div>
-        <div className="p-2">Second item</div>
-        <div className="p-2">Third item</div>
-      </Stack>
-    </>
+      <div>
+        <label>
+          Filter:
+          <select value={filter} onChange={(e) => handleFilterChange(e.target.value)}>
+            <option value="all">All</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            {/* Add more options as needed */}
+          </select>
+        </label>
+      </div>
+    </header>
   );
-}
+};
 
-export default CombinedExample;
+export default SearchBar;
