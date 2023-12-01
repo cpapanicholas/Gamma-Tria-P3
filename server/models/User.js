@@ -2,10 +2,16 @@
 
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const validator = require('validator');
 
 const userSchema = new Schema({
-
-    name: {
+    firstName: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+    },
+    lastName: {
         type: String,
         required: true,
         unique: true,
@@ -21,7 +27,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        match: [/.+@.+\..+/, 'Must match an email address!'],
+        validate: {
+            validator: validator.isEmail,
+            message: 'Must be a valid email address!',
+          },
     },
     password: {
         type: String,
@@ -36,21 +45,21 @@ const userSchema = new Schema({
     ],
     friends: [
         {
-            type: Schema.type.ObjectId,
-            ref: 'friends'
+            type: Schema.Types.ObjectId,
+            ref: 'Friend'
         }
     ],
     workouts: [
         {
-            type: Schema.type.ObjectId,
-            ref: 'workouts'
+            type: Schema.Types.ObjectId,
+            ref: 'Workout'
         }
     
     ],
     programs: [
         {
-            type: Schema.type.ObjectId,
-            ref: 'programs'
+            type: Schema.Types.ObjectId,
+            ref: 'Program'
         }
     ]
 });

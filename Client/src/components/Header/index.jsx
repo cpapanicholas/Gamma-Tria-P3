@@ -19,7 +19,7 @@ export default function Header ({ showMenu, setShowMenu}) {
   const handleMenu = () => setShowMenu(!showMenu);
 
   return (
-    <Nav className='bg-dark d-flex justify-content-between' fixed="top">
+    <Nav className='bg-dark d-flex justify-content-between fixed-top'>
       <NavDropdown  title="Sweat Check" id="nav-dropdown" className='ps-2 d-flex align-items-center justify-content-center'>
         <NavDropdown.Item >Feed 1</NavDropdown.Item>
         <NavDropdown.Item >Feed 2</NavDropdown.Item>
