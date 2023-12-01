@@ -1,6 +1,11 @@
 const { Schema, model } = require('mongoose');
 
 const workoutSchema = new Schema({
+    workoutId: {
+        id: String,
+        required: true,
+        unique: true,
+    },
     name: {
         type:String,
         required: true,
