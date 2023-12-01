@@ -1,6 +1,7 @@
 const User = require('./User');
-const friend = require('./Friend');
+const Friend = require('./Friend');
 const Workout = require('./Workout');
 const Program = require('./Program');
+const Post = require('./Post');
 
-module.exports = { User, Workout, Friend, Program};
+module.exports = { User, Workout, Friend, Program, Post};

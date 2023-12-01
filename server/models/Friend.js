@@ -5,6 +5,7 @@ const friendSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
+        
     },
     user2: {
         type: Schema.Types.ObjectId,
@@ -18,6 +19,6 @@ const friendSchema = new Schema({
     // Add other fields related to the friendship as needed
 });
 
-const friend = model('Friend', friendSchema);
+const Friend = model('Friend', friendSchema);
 
-module.exports = friend;
+module.exports = Friend;
