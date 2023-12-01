@@ -1,40 +1,58 @@
-// DirectMessagePage.jsx
-
 import React, { useState } from 'react';
 
-const DirectMessagePage = () => {
-  const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
-
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== '') {
-      setMessages([...messages, { text: newMessage, sender: 'You' }]);
-      setNewMessage('');
-    }
-  };
-
+const ConversationList = ({ conversations, onSelectConversation }) => {
   return (
     <div>
-      <h1>Direct Message Page</h1>
-      <div style={{ border: '1px solid #ccc', padding: '10px', minHeight: '200px' }}>
-        {messages.map((message, index) => (
-          <div key={index}>
-            <strong>{message.sender}:</strong> {message.text}
-          </div>
+      <h2>Conversations</h2>
+      <ul>
+        {conversations.map((conversation, index) => (
+          <li key={index} onClick={() => onSelectConversation(index)}>
+            {conversation.name}
+          </li>
         ))}
-      </div>
-      <div style={{ marginTop: '10px' }}>
-        <textarea
-          rows="4"
-          cols="50"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-        ></textarea>
-        <br />
-        <button onClick={handleSendMessage}>Send Message</button>
-      </div>
+      </ul>
     </div>
   );
 };
 
-export default DirectMessagePage;
+const ChatRoom = ({ currentConversation }) => {
+  return (
+    <div>
+      <h2>Chat Room</h2>
+      {currentConversation && <MessageList messages={currentConversation.messages} />}
+    </div>
+  );
+};
+
+const MessageList = ({ messages }) => {
+  return (
+    <ul>
+      {messages.map((message, index) => (
+        <li key={index}>{message}</li>
+      ))}
+    </ul>
+  );
+};
+
+const DMApp = () => {
+  const [currentConversation, setCurrentConversation] = useState(null);
+
+  const conversations = [
+    { name: 'User 1', messages: ['Hello!', 'How are you?'] },
+    { name: 'User 2', messages: ['Hi there!', 'I am good.'] },
+    // Add more conversations as needed
+  ];
+
+  const handleSelectConversation = (index) => {
+    setCurrentConversation(conversations[index]);
+  };
+
+  return (
+    <div>
+      <ConversationList conversations={conversations} onSelectConversation={handleSelectConversation} />
+      <ChatRoom currentConversation={currentConversation} />
+    </div>
+  );
+};
+
+export default DMApp;
