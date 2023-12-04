@@ -2,6 +2,7 @@ const { User, Post, Program, Workout, Friend } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const { createWriteStream } = require('fs');
 const { resolve } = require('path');
+
 // const { graphqlUploadExpress } = require('graphql-upload');
 
 // const processUpload = async (file, subdirectory) => {
@@ -37,9 +38,6 @@ const resolvers = {
         .sort({ createdAt: -1 })
         .populate('comments');
     },
-    getAllPrograms: async () => {
-      return Program.find();
-    },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id })
@@ -49,6 +47,97 @@ const resolvers = {
           .populate('programs');
       }
       throw AuthenticationError;
+    },
+    getWorkoutById: async (_, { _id }) => {
+      try {
+        const workout = await Workout.findOne({ _id });
+
+        if (!workout) {
+          throw new Error('Workout not found');
+        }
+        return workout;
+      } catch (error) {
+        console.error(error)
+        console.error('Error fetching workout:', error.message);
+        throw new Error('Failed to fetch workout');
+      }
+    },
+    getAllWorkouts: async () => {
+      try {
+        const workouts = await Workout.find();
+        return workouts;
+      } catch (error) {
+        console.error('Error fetching workouts:', error.message);
+        throw new Error('Failed to fetch workouts');
+      }
+    },
+    getWorkoutByOriginalId: async (_, { originalId }, context) => {
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const workout = await Workout.findOne({ originalId: originalId });
+    
+        if (!workout) {
+          throw new Error('Workout not found');
+        }
+    
+        return workout;
+      } catch (error) {
+        console.error(error);
+        console.error('Error fetching workout:', error.message);
+        throw new Error('Failed to fetch workout');
+      }
+    },
+    getAllPublicWorkouts: async (_, __, context) => {
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const workouts = await Workout.find({ originalId: ''});
+    
+        return workouts;
+      } catch (error) {
+        console.error('Error fetching workouts:', error.message);
+        throw new Error('Failed to fetch workouts');
+      }
+    },
+    getAllPublicPrograms: async (_, __, context) => {
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const programs = await Program.find({ originalId: ''});
+    
+        return programs;
+      } catch (error) {
+        console.error('Error fetching programs:', error.message);
+        throw new Error('Failed to fetch programs');
+      }
+    },
+    getProgramById: async (_, { programId }, context) => {
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const program = await Program.findById(programId);
+    
+        if (!program) {
+          throw new Error('Program not found');
+        }
+    
+        return program;
+      } catch (error) {
+        console.error('Error fetching program:', error.message);
+        throw new Error('Failed to fetch program');
+      }
+    },
+    getProgramsByByUser: async (_, { userId }, context) => {
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const programs = await Program.find({ userId: userId });
+    
+        if (!programs) {
+          throw new Error('Programs not found');
+        }
+    
+        return programs;
+      } catch (error) {
+        console.error('Error fetching programs:', error.message);
+        throw new Error('Failed to fetch programs');
+      }
     },
   },
 
@@ -60,6 +149,7 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       } catch (error) {
+        console.error(error);
         console.error(error);
         throw new Error('Error creating user');
       }
@@ -79,7 +169,7 @@ const resolvers = {
       }
 
       const token = signToken(user);
-      console.log({ token, user });
+      // console.log({ token, user });
 
       return { token, user };
     },
@@ -150,37 +240,41 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    createWorkout: async (parent, { input }, context) => {
-      try {
-        const workout = await Workout.create(input);
+    // createWorkout: async (parent, { input }, context) => {
+    //   try {
+    //     const workout = await Workout.create(input);
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { workouts: workout._id } }
-        );
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $addToSet: { workouts: workout._id } }
+    //     );
 
-        return workout;
-      } catch (error) {
-        throw new Error('Error creating workout');
-      }
-    },
-    createProgram: async (parent, { name, workoutIds }) => {
+    //     return workout;
+    //   } catch (error) {
+    //     throw new Error('Error creating workout');
+    //   }
+    // },
+    createProgram: async (_, { programInput }, context) => {
       try {
-        const program = await Program.create({ name, workouts: workoutIds });
+        // Assuming you're using Mongoose for MongoDB
+        const program = await Program.create(programInput);
+    
         return program;
       } catch (error) {
-        throw new Error('Error creating program');
+        console.error(error)
+        console.error('Error creating program:', error.message);
+        throw new Error('Failed to create program');
       }
     },
-    addProgram: async (parent, { programId }, context) => {
-      if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { programs: programId } }
-        );
-      }
-      throw AuthenticationError;
-    },
+    // addProgram: async (parent, { programId }, context) => {
+    //   if (context.user) {
+    //     return User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $addToSet: { programs: programId } }
+    //     );
+    //   }
+    //   throw AuthenticationError;
+    // },
     // uploadFile: async (_, { file }) => {
     //   return processUpload(file, 'uploads');
     // },
@@ -224,7 +318,45 @@ const resolvers = {
     //   }
     //   throw AuthenticationError;
     // },
-  },
+    updateWorkout: async (parent, { workoutId, updatedWorkout }) => {
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const workout = await Workout.findByIdAndUpdate(
+          workoutId,
+          updatedWorkout,
+          { new: true }
+        );
+
+        if (!updatedWorkout) {
+          throw new Error('Workout not found');
+        }
+
+        return workout;
+      } catch (error) {
+        // Handle the error as needed, log it, etc.
+        console.error('Error updating workout:', error.message);
+        throw new Error('Failed to update workout');
+      }
+    },
+    createWorkout: async (_, { workoutInput }, context) => {
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const createdWorkout = await Workout.create(workoutInput);
+
+        if (workoutInput.userId != "") {
+          await User.findOneAndUpdate(
+            { _id: workoutInput.userId },
+            { $addToSet: { workouts: createdWorkout._id } }
+          );
+        }
+
+        return createdWorkout
+      } catch (error) {
+        console.error('Error creating workout:', error.message);
+        throw new Error('Failed to create workout');
+      }
+    },
+  }
 };
 
 module.exports = resolvers;

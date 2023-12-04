@@ -4,43 +4,31 @@ import { faCaretDown, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import ExerciseCard from './ExerciseCard';
 
 export default function ExerciseCardContainer({ exercise }) {
-  const [weights, setWeights] = useState(Array(exercise.exercises.length).fill(''));
-  const [completedSets, setCompletedSets] = useState([]);
-  const allSets = completedSets.length === exercise.sets;
-  const [allSetsCompleted, setAllSetsCompleted] = useState(false)
+  const [showSets, setShowSets] = useState(false);
 
-  const handleWeightChange = (index, value) => {
-    const newWeights = [...weights];
-    newWeights[index] = value;
-    setWeights(newWeights);
+  const handleDropDownClick = () => {
+    // Toggle the visibility of the table
+    setShowSets((prevShowSets) => !prevShowSets);
   };
-
-  const handleSetComplete = (setIndex) => {
-    setCompletedSets((prevCompletedSets) => {
-      if (prevCompletedSets.includes(setIndex)) {
-        // Set is already completed, so remove it
-        return prevCompletedSets.filter((index) => index !== setIndex);
-      } else {
-        // Set is incomplete, so mark it as complete
-        return [...prevCompletedSets, setIndex];
-      }
-    });
-  };
-
-  useEffect(() => {
-    if (completedSets.length === 5) {
-      return setAllSetsCompleted(true)
-    } else if (completedSets.length != 5) {
-      return setAllSetsCompleted(false)
-    }
-  }, [completedSets]);
 
   return (
-    <>
+    <div className='exercise-container'>
       {exercise.exercises.map((exercise, index) => (
-        <ExerciseCard key={exercise.name} exercise={exercise} index={index}/>
+        <ExerciseCard key={exercise.name} exercise={exercise} index={index} showSets={showSets}/>
       ))}
-    </>
+      {showSets ? 
+      <FontAwesomeIcon
+        icon={faCaretDown} 
+        onClick={() => handleDropDownClick(!showSets)}
+        className='openSets-toggle'
+        rotation={180}
+        /> : 
+      <FontAwesomeIcon
+        icon={faCaretDown} 
+        onClick={() => handleDropDownClick(!showSets)}
+        className='openSets-toggle'
+      /> }
+    </div>
   );
 }
 

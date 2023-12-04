@@ -58,3 +58,37 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_ORIGINAL_WORKOUT = gql`
+query getWorkoutsByOriginalId($originalId: ID!) {
+  getWorkoutsByOriginalId(originalId: $originalId) {
+    _id
+    originalId
+    userId
+    name
+    description
+    workout {
+      phase
+      exercises {
+        exercise {
+          name
+        }
+        sets {
+          reps
+          weight
+        }
+      }
+    }
+  }
+}
+`;
+
+export const QUERY_GET_ALL_PROGRAMS = gql`
+  query GetAllPrograms {
+    getAllPrograms {
+      _id
+    }
+  }
+`;
+ 
+

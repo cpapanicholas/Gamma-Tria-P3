@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 
-export default function ExerciseCard({ exercise, index }) {
+export default function ExerciseCard({ exercise, index, showSets }) {
   const [weights, setWeights] = useState(Array(exercise.length).fill(''));
   const [completedSets, setCompletedSets] = useState([]);
   const [allSetsCompleted, setAllSetsCompleted] = useState(false);
-  const [showSets, setShowSets] = useState(false);
 
   const handleWeightChange = (setIndex, value) => {
     const newWeights = [...weights];
     newWeights[setIndex] = value;
     setWeights(newWeights);
+    exercise.sets[setIndex].weight = value
+    console.log(exercise);
   };
 
   const handleSetComplete = (setIndex) => {
@@ -34,21 +35,11 @@ export default function ExerciseCard({ exercise, index }) {
     }
   }, [completedSets]);
 
-  const handleDropDownClick = () => {
-    // Toggle the visibility of the table
-    setShowSets((prevShowSets) => !prevShowSets);
-  };
-
   return (
     <>
-        <div key={index} className="exercise-card">
+        <div key={index} className="exercise">
           <div className='exercise-card-title'>
-            <p>{exercise.name}</p>
-            
-            <FontAwesomeIcon
-              icon={faCaretDown} 
-              onClick={() => handleDropDownClick(!showSets, index)}
-            />
+            <p>{exercise.exercise.name}</p>
           </div>
           {showSets && (
             <div className="exercise-table">
@@ -63,14 +54,15 @@ export default function ExerciseCard({ exercise, index }) {
                   />
                 </div>
               </div>
-                {Array.from({ length: exercise.sets }, (_, setIndex) => (
+                {Array.from({ length: exercise.sets.length }, (_, setIndex) => (
               <div className="table-row">
                   <React.Fragment key={setIndex}>
                     <div className="table-column-sets">{setIndex + 1}</div>
-                    <div className="table-column-reps">{exercise.reps}</div>
+                    <div className="table-column-reps">{exercise.sets[setIndex].reps}</div>
                     <div className="table-column-weight">
                       <input
                         type="number"
+                        placeholder={exercise.sets[setIndex].weight}
                         value={weights[setIndex]}
                         className='weight-input'
                         onChange={(e) => handleWeightChange(setIndex, e.target.value)}
