@@ -61,6 +61,7 @@ const resolvers = {
         return { token, user };
       } catch (error) {
         console.error(error);
+        console.log(JSON.stringify(error))
         throw new Error('Error creating user');
       }
     },

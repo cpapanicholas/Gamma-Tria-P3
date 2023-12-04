@@ -5,20 +5,14 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const userSchema = new Schema({
-    userId: {
-        type: String,
-        unique: true,
-    },
     firstName: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
     },
     lastName: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
     },
     username: {
