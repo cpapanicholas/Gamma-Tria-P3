@@ -154,11 +154,6 @@ p {
   align-items: center;
 }
 
-.exercise-card {
-  margin: 15px 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-}
-
 .show-sets {
   display: block;
 }
@@ -174,6 +169,8 @@ p {
   margin: 10px;
   border: 1px solid #ccc;
   padding: 10px;
+  margin: 15px 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .exercise-card-title {
@@ -257,4 +254,26 @@ p {
 
 .sets-open {
   rotate: 180;
+}
+
+.exercise-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 15px 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  position: relative;
+}
+
+.exercise {
+  width: 100%;
+}
+
+.openSets-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px 30px;
 }

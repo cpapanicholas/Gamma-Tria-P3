@@ -1,10 +1,13 @@
 const { Schema, model } = require('mongoose');
 
 const programSchema = new Schema({
-    programId: {
+    originalId: {
         type: String,
-        required: true,
-        unique: true,
+        trim: true,
+    },
+    userId: {
+        type: String,
+        trim: true,
     },
     name: {
         type: String,
@@ -16,18 +19,20 @@ const programSchema = new Schema({
         trim: true,
     },
     duration: {
-        type: Number, // You can adjust the type based on your needs (e.g., days, weeks)
+        type: String, // You can adjust the type based on your needs (e.g., days, weeks)
         required: true,
     },
     workouts: [
         {
             day: {
-                type: Date, // Day of the workout
+                type: String,
                 required: true,
+                trim: true,
             },
             workout: {
-                type: Schema.Types.ObjectId,
-                ref: 'Workout', // Reference to the Workout model
+                type: String,
+                required: true,
+                trim: true,
             },
         },
     ],
