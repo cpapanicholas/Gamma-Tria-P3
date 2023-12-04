@@ -9,10 +9,10 @@ const postSchema = new Schema({
         ref: 'User', // Reference to the User model
         required: true,
     },
-    mediaUrl: {
-        type: String,
-
-    },
+    // mediaUrl: {
+    //     type: String,
+    //     required: true,
+    // },
     userComment: {
         type: String,
         required: true,

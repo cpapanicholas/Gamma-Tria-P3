@@ -1,37 +1,66 @@
-// DirectMessagePage.jsx
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client'; // Make sure to import the Socket.IO client library
 
 const DirectMessagePage = () => {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
+  const [messageInput, setMessageInput] = useState('');
+  const [username, setUsername] = useState('User'); // Set the initial username
 
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== '') {
-      setMessages([...messages, { text: newMessage, sender: 'You' }]);
-      setNewMessage('');
+  // Connect to the Socket.IO server
+  const socket = io('http://localhost:3001'); // Update the URL to match your server
+
+  useEffect(() => {
+    // Set up event listeners for incoming messages and notifications
+    socket.on('message', (data) => {
+      setMessages((prevMessages) => [...prevMessages, data]);
+    });
+
+    socket.on('notification', (data) => {
+      setMessages((prevMessages) => [...prevMessages, { notification: data.notification }]);
+    });
+
+    // Clean up the event listeners when the component unmounts
+    return () => {
+      socket.disconnect();
+    };
+  }, []); // Empty dependency array ensures that this effect runs only once on mount
+
+  const sendMessage = (event) => {
+    event.preventDefault();
+    if (messageInput.trim()) {
+      socket.emit('message', { sent: messageInput, username });
+      setMessageInput('');
     }
   };
 
   return (
     <div>
       <h1>Direct Message Page</h1>
-      <div style={{ border: '1px solid #ccc', padding: '10px', minHeight: '200px' }}>
-        {messages.map((message, index) => (
-          <div key={index}>
-            <strong>{message.sender}:</strong> {message.text}
-          </div>
-        ))}
-      </div>
-      <div style={{ marginTop: '10px' }}>
-        <textarea
-          rows="4"
-          cols="50"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-        ></textarea>
-        <br />
-        <button onClick={handleSendMessage}>Send Message</button>
+      
+      <div>
+        <h2>Chat Room</h2>
+        <ul>
+          {messages.map((msg, index) => (
+            <li key={index}>
+              {msg.notification ? (
+                <span>{msg.notification}</span>
+              ) : (
+                <span>
+                  {msg.username}: {msg.sent}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+        <form onSubmit={sendMessage}>
+          <input
+            type="text"
+            placeholder="Type your message..."
+            value={messageInput}
+            onChange={(e) => setMessageInput(e.target.value)}
+          />
+          <button type="submit">Send</button>
+        </form>
       </div>
     </div>
   );

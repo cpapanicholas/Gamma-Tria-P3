@@ -64,37 +64,37 @@ export const QUERY_ME = gql`
     }
   }
 `;
-export const QUERY_ALL_PROGRAMS = gql`
-  query getAllPrograms {
-    getAllPrograms {
-      _id
-      name
-      workouts {
-        _id
-        name
-        exercises {
+
+export const QUERY_ORIGINAL_WORKOUT = gql`
+query getWorkoutsByOriginalId($originalId: ID!) {
+  getWorkoutsByOriginalId(originalId: $originalId) {
+    _id
+    originalId
+    userId
+    name
+    description
+    workout {
+      phase
+      exercises {
+        exercise {
           name
-          sets
+        }
+        sets {
           reps
+          weight
         }
       }
     }
   }
+}
 `;
 
-export const QUERY_WORKOUTS = gql`
-  query getAllWorkouts {
-    getAllWorkouts {
+export const QUERY_GET_ALL_PROGRAMS = gql`
+  query GetAllPrograms {
+    getAllPrograms {
       _id
-      name
-      exercises {
-        name
-        sets
-        reps
-      }
     }
   }
 `;
+ 
 
-
-// Add more queries as needed

@@ -1,6 +1,6 @@
 const typeDefs = `
   type User {
-    _id: ID!
+    _id: ID
     firstName: String!
     lastName: String!
     username: String!
@@ -46,65 +46,152 @@ const typeDefs = `
     user: User
   }
 
-  type Query {
-    getAllUsers: [User]
-    getUser(_id: ID!): User
-    getAllPostsOfUser(_id: ID!): [Post]
-    me: User
-    getAllPrograms: [Program]
-  }
-
-  type Workout {
-    _id: ID!
-    name: String!
-    exercises: [Exercise]
-    difficulty: String!
-  }
-  
-  type Exercise {
-    name: String!
-    difficulty: String
-    muscleGroups: [Muscle]
-  }
-
   type Muscle {
     name: String!
   }
   
-  input ExerciseInput {
+  type Program {
+    _id: ID!
+    originalId: ID
+    userId: ID
     name: String!
-    sets: Int!
+    description: String
+    duration: String
+    workouts: [ProgramWorkout]
+  }
+
+  type ProgramWorkout {
+    day: String!
+    workout: String!
+  }
+  
+  type Workout {
+    _id: ID
+    originalId: ID
+    userId: ID
+    name: String
+    description: String
+    dateCompleted: String
+    workout: [WorkoutPhase]
+  }
+  
+  type WorkoutPhase {
+    phase: String!
+    exercises: [WorkoutExercise!]!
+  }
+  
+  type WorkoutExercise {
+    exercise: Exercise!
+    sets: [ExerciseSet!]!
+  }
+  
+  type Exercise {
+    name: String!
+    type: String!
+    muscle: String!
+    equipment: String!
+    difficulty: String!
+    instructions: String!
+  }
+  
+  type ExerciseSet {
     reps: Int!
-    difficulty: String
+    weight: Int!
+    completed: Boolean
   }
   
   input WorkoutInput {
+    originalId: ID
+    userId: ID
     name: String!
-    exercises: [ExerciseInput!]!
+    description: String
+    dateCompleted: String
+    workout: [WorkoutPhaseInput!]!
   }
 
-  type Program {
-    _id: ID!
+  input ProgramInput {
+    originalId: ID
+    userId: ID
     name: String!
-    workouts: [Workout]
+    description: String
+    duration: String
+    workouts: [ProgramWorkoutInput]
   }
 
+  input ProgramWorkoutInput {
+    day: String!
+    workout: ID!
+  }
+  
+  input WorkoutPhaseInput {
+    phase: String!
+    exercises: [WorkoutExerciseInput!]!
+  }
+  
+  input WorkoutExerciseInput {
+    exercise: ExerciseInput!
+    sets: [ExerciseSetInput!]!
+  }
+  
+  input ExerciseInput {
+    name: String!
+    type: String!
+    muscle: String!
+    equipment: String!
+    difficulty: String!
+    instructions: String!
+  }
+  
+  input ExerciseSetInput {
+    reps: Int!
+    weight: Int!
+    completed: Boolean!
+  }
+  
+  input CreateWorkoutInput {
+    originalId: ID
+    userId: ID
+    name: String!
+    description: String
+    dateCompleted: String
+    workout: [WorkoutPhaseInput!]!
+  }
+  
   type Mutation {
+    updateWorkout(workoutId: ID!, updatedWorkout: WorkoutInput!): Workout
+    createWorkout(workoutInput: CreateWorkoutInput!): Workout
     addUser(input: UserInput): Auth
     login(email: String!, password: String!): Auth
     addPost(postText: String!): Post
     addComment(postId: ID!, commentText: String!): Post
     removePost(postId: ID!): Post
     removeComment(postId: ID!, commentId: ID!): Post
-    createWorkout(input: ExerciseInput): Workout
-    createProgram(name: String!, workoutIds: [ID!]!): Program
-    addProgram(programId: ID!): Program
     addFriend(friendId: ID!): Friend
-    uploadFile(file: Upload!): String!
-    removeFriend(friendId: ID!): RemoveFriendResponse
+    createProgram(programInput: ProgramInput!): Program
   }
-`;
 
-module.exports = typeDefs;
+  type Query {
+    getAllUsers: [User]
+    getUser(_id: ID!): User
+    getAllPostsOfUser(_id: ID!): [Post]
+    me: User
+    getAllPublicPrograms(originalId: String): [Program]
+    getAllPublicWorkouts(originalId: String): [Workout]
+    getProgramById(programId: ID!): Program
+    getWorkoutById(_id: ID!): Workout
+    getAllWorkouts: [Workout]!
+    getWorkoutByOriginalId(originalId: ID!): Workout
+    getProgramsByByUser(userId: ID!): [Program]
+  }
+  `;
+  
+  module.exports = typeDefs;
+  
+  
+  // addUser(firstName: String!, lastName: String!, Username: String!, email: String!, password: String!): Auth
+  // addUser(input: UserInput): Auth
+  
+  // uploadFile(file: Upload!): String!
+  // removeFriend(friendId: ID!): RemoveFriendResponse
 
 
