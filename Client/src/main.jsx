@@ -10,7 +10,7 @@ import Signup from './pages/signup.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import Library  from './pages/LibraryPage.jsx';
-import Friends  from './pages/friendsPage.jsx';
+// import Friends  from './pages/friendsPage.jsx';
 import MessagesPage from './pages/MessagesPage';
 const router = createBrowserRouter([
   {
@@ -43,10 +43,10 @@ const router = createBrowserRouter([
         path: '/LibraryPage',
         element: <Library />
       },
-      {
-        path: '/friendsPage',
-        element: <Friends/>
-      },
+      // {
+      //   path: '/friendsPage',
+      //   element: <Friends/>
+      // },
       {
         path: '/MessagesPage',
         element: <MessagesPage />

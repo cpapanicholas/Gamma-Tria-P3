@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import io from 'socket.io-client'; // Make sure to import the Socket.IO client library
+import io from 'socket.io-client'; // Make sure to import the Socket.IO client library
 
 const MessagePage = () => {
   const [messages, setMessages] = useState([]);

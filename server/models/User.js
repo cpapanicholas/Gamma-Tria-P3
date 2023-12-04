@@ -8,13 +8,11 @@ const userSchema = new Schema({
     firstName: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
     },
     lastName: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
     },
     username: {
@@ -36,6 +34,16 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 5,
+    },
+    status: {
+        type: {
+            text: String,
+            timestamp: Date,
+        },
+        default: {
+            text: 'not at gym',
+            timestamp: null,
+        },
     },
     posts: [
         {

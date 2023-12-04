@@ -1,14 +1,16 @@
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations';
+import { useUserContext } from "../../utils/UserContext";
 
 import Auth from '../../utils/auth';
 
 export default function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN);
+  const {setCurrentUser, setFruit} = useUserContext()
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -28,12 +30,14 @@ export default function Login(props) {
       const { data } = await login({
         variables: { ...formState },
       });
+      console.log(data.login);
+      setCurrentUser(data.login.user)
       Auth.login(data.login.token);
-      console.log(data);
     } catch (e) {
       console.error(e);
     }
-
+    
+    setFruit("banana");
     // clear form values
     setFormState({
       email: '',
@@ -47,11 +51,9 @@ export default function Login(props) {
         <div className="card">
           <h4 className="card-header bg-dark text-light p-2">Login</h4>
           <div className="card-body">
+            <Link to={'/home'}>home</Link>
             {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/home">back to the homepage.</Link>
-              </p>
+              ''
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input
