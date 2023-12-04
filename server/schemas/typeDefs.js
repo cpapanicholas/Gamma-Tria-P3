@@ -156,7 +156,7 @@ const typeDefs = `
     dateCompleted: String
     workout: [WorkoutPhaseInput!]!
   }
-  
+
   type Mutation {
     updateWorkout(workoutId: ID!, updatedWorkout: WorkoutInput!): Workout
     createWorkout(workoutInput: CreateWorkoutInput!): Workout
@@ -187,12 +187,11 @@ const typeDefs = `
   
   module.exports = typeDefs;
   
+  // removeFriend(friendId: ID!): User
   
   // addUser(firstName: String!, lastName: String!, Username: String!, email: String!, password: String!): Auth
   // addUser(input: UserInput): Auth
   
-  // uploadFile(file: Upload!): String!
-  // removeFriend(friendId: ID!): RemoveFriendResponse
 
 
 
