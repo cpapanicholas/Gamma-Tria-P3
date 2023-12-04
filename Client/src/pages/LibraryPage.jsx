@@ -14,7 +14,7 @@ const SearchBar = () => {
   };
 
   return (
-    <header>
+    <div>
       <div className="">
         <h4 className="card-header bg-dark text-light p-2">Library</h4>
       </div>
@@ -64,7 +64,9 @@ const SearchBar = () => {
           </div>
         </div>
       </div>
-    </header>
+      <Footer/>
+    </div>
+    
   );
 };
 

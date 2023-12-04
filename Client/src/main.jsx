@@ -10,8 +10,8 @@ import Signup from './pages/signup.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import Library  from './pages/LibraryPage.jsx';
-import DirectMessagePage  from './pages/DirectMessagePage.jsx';
-
+import Friends  from './pages/friendsPage.jsx';
+import MessagesPage from './pages/MessagesPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,10 +44,13 @@ const router = createBrowserRouter([
         element: <Library />
       },
       {
-        path: '/DirectMessagePage',
-        element: <DirectMessagePage />
+        path: '/friendsPage',
+        element: <Friends/>
       },
-      
+      {
+        path: '/MessagesPage',
+        element: <MessagesPage />
+      },
     ]
   },
 ]);

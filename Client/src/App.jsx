@@ -1,7 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserProvider from '../utils/UserContext';
-
 import {
   ApolloClient,
   InMemoryCache,
