@@ -2,36 +2,42 @@ import { gql } from '@apollo/client';
 
 export const QUERY_USER = gql`
   query user($username: String!) {
-    user(username: $username) {
+    getUser(username: $username) {
       _id
       username
       email
-      thoughts {
+      posts {
         _id
-        thoughtText
+        postText
         createdAt
       }
     }
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+export const QUERY_POSTS = gql`
+  query getAllPostsOfUser($_id: ID!) {
+    getAllPostsOfUser(_id: $_id) {
       _id
-      thoughtText
-      thoughtAuthor
+      postText
+      postAuthor
       createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
     }
   }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const QUERY_SINGLE_POST = gql`
+  query getSinglePost($_id: ID!) {
+    getSinglePost(_id: $_id) {
       _id
-      thoughtText
-      thoughtAuthor
+      postText
+      postAuthor
       createdAt
       comments {
         _id
@@ -49,12 +55,46 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      thoughts {
+      posts {
         _id
-        thoughtText
-        thoughtAuthor
+        postText
+        postAuthor
         createdAt
       }
     }
   }
 `;
+export const QUERY_ALL_PROGRAMS = gql`
+  query getAllPrograms {
+    getAllPrograms {
+      _id
+      name
+      workouts {
+        _id
+        name
+        exercises {
+          name
+          sets
+          reps
+        }
+      }
+    }
+  }
+`;
+
+export const QUERY_WORKOUTS = gql`
+  query getAllWorkouts {
+    getAllWorkouts {
+      _id
+      name
+      exercises {
+        name
+        sets
+        reps
+      }
+    }
+  }
+`;
+
+
+// Add more queries as needed

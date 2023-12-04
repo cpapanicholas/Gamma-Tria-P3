@@ -108,5 +108,3 @@ const typeDefs = `
 module.exports = typeDefs;
 
 
-// addUser(firstName: String!, lastName: String!, Username: String!, email: String!, password: String!): Auth
-// addUser(input: UserInput): Auth

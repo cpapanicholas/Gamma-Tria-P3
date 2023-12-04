@@ -11,7 +11,7 @@ const postSchema = new Schema({
     },
     mediaUrl: {
         type: String,
-        required: true,
+
     },
     userComment: {
         type: String,
