@@ -1,4 +1,4 @@
-const { User, Post, Program, Workout, Friend } = require('../models');
+const { User, Post, Program, Workout, Friend, Exercise } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const { createWriteStream } = require('fs');
 const { resolve } = require('path');
@@ -118,6 +118,15 @@ const resolvers = {
       } catch (error) {
         console.error('Error fetching programs:', error.message);
         throw new Error('Failed to fetch programs');
+      }
+    },
+    getAllExercises: async () => {
+      try {
+        const exercises = await Exercise.find();
+        return exercises;
+      } catch (error) {
+        console.error(error);
+        throw new Error('Error fetching exercises');
       }
     },
   },

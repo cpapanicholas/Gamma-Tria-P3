@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import ProgramCard from "../components/ProgramCard";
 import { useMutation } from '@apollo/client';
 import ExerciseCardContainer from "../components/ExercisePageUI/ExerciseCardContainer";
+
 import { UPDATE_WORKOUT } from '../../utils/mutations'
 import { useQuery } from '@apollo/client';
 import { QUERY_WORKOUT_BY_ID } from '../../utils/queries';
@@ -23,6 +24,7 @@ export default function WorkoutPage (props) {
     workout = res
     console.log(workout);
   }
+
 
   const handleCompleteWorkout = async () => {
     // Assuming workoutId is the ID of the workout you want to update
