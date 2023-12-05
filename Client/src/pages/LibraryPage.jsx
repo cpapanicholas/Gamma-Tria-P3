@@ -1,12 +1,44 @@
-import React, { useState } from 'react';
-import Footer from '../components/Footer/index'
+import { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_PUBLIC_WORKOUTS } from '../../utils/queries';
+import { QUERY_PUBLIC_PROGRAMS } from '../../utils/queries';
+import ProgramCard from '../components/ProgramCard';
+import WorkoutCard from '../components/WorkoutCard';
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+
 const SearchBar = () => {
+  // const workouts = []
+  // const programs = []
+  const [workouts, setWorkouts] = useState([])
+  const [programs, setPrograms] = useState([])
+
+
+  const { loading: loadingFirst, error: errorFirst, data: dataFirst } = useQuery(QUERY_PUBLIC_WORKOUTS, {
+    variables: { originalId: "" },
+  }); 
+  console.log(loadingFirst);
+  console.log(dataFirst);
+  if (dataFirst) {
+    workouts.push(dataFirst.getAllPublicWorkouts)
+    console.log(workouts[0]);
+  }
+ 
+  const { loading: loadingSecond, error: errorSecond, data: dataSecond } = useQuery(QUERY_PUBLIC_PROGRAMS); 
+  console.log(loadingSecond);
+  console.log(dataSecond);
+  console.error(errorSecond)
+  if (dataSecond) {
+    programs.push(dataSecond.getAllPublicWorkouts)
+    console.log(dataSecond);
+  }
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all'); // Default filter value
 
   const handleSearch = () => {
     // Perform the search logic here using 'searchTerm' and 'filter'
-    console.log('Searching for:', searchTerm, 'with filter:', filter);
+    // console.log('Searching for:', searchTerm, 'with filter:', filter);
   };
 
   const handleFilterChange = (newFilter) => {
@@ -14,7 +46,8 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <>
+    <header>
       <div className="">
         <h4 className="card-header bg-dark text-light p-2">Library</h4>
       </div>
@@ -64,9 +97,11 @@ const SearchBar = () => {
           </div>
         </div>
       </div>
-      <Footer/>
-    </div>
-    
+    </header>
+    {/* {programs[0] ? programs[0].map((program) => <ProgramCard program={program}/>) : ''} */}
+    {workouts[0] ? workouts[0].map((workout) => <WorkoutCard workout={workout}/>) : ''}
+   
+    </>
   );
 };
 

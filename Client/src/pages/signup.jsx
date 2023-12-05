@@ -1,5 +1,3 @@
-
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +14,12 @@ export default function Signup() {
     email: '',
     password: '',
   });
+<<<<<<< HEAD
   const [addUser, { error, data }] = useMutation(ADD_FRIEND);
+=======
+  
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+>>>>>>> 9f83af2f5ff93eb507498b32e3cfc4d027f817fa
 
   const handleChange = (event) => {
     const { name, value } = event.target;

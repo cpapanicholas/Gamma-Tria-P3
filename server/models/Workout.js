@@ -85,7 +85,6 @@ const workoutSchema = new Schema({
     default: Date.now,
   },
   workout: [workoutPhaseSchema],
-  // Other fields
 });
 
 const Workout = model('Workout', workoutSchema);
