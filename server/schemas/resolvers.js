@@ -263,6 +263,28 @@ const resolvers = {
       throw AuthenticationError
       ('You need to be logged in!');
     },
+
+    favoriteExercise: async (parent, { exerciseId }, context) => {
+      if (context.user) {
+        // Find the authenticated user
+        const user = await User.findById(context.user._id);
+  
+        // Check if the exercise is not already in favorites
+        if (!user.favorites.includes(exerciseId)) {
+          // Add the exercise to favorites
+          user.favorites.push(exerciseId);
+  
+          // Save the updated user
+          await user.save();
+        }
+  
+        // Return the updated user with favorites
+        return user;
+      }
+  
+      // Throw an error if not authenticated
+      throw new AuthenticationError('User not authenticated');
+    },
     // removeFriend: async (parent, { friendId }, context) => {
     //   if (context.user) {
     //     try {

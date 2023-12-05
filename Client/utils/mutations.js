@@ -118,3 +118,15 @@ export const CREATE_WORKOUT = gql`
     }
   }
 `;
+
+export const FAVORITE_EXERCISE = gql`
+  mutation favoriteExercise($exerciseId: ID!) {
+    favoriteExercise(exerciseId: $exerciseId) {
+      _id
+      favorites {
+        _id
+        name
+      }
+    }
+  }
+`;

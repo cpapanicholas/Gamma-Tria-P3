@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { fetchExercises } from '../../../server/utils/api'; // Adjust the path
+import { useMutation } from '@apollo/client';
+import { FAVORITE_EXERCISE } from '../../utils/mutations';
 const muscleGroups = [
   'abdominals',
   'abductors',
@@ -46,6 +48,19 @@ const ExerciseList = () => {
     onSelectMuscleGroup('');
   }, []);
 
+  const [favoriteExercise] = useMutation(FAVORITE_EXERCISE);
+
+  const handleFavoriteClick = async (exerciseId) => {
+    try {
+      await favoriteExercise({
+        variables: { exerciseId },
+      });
+      console.log(`Exercise ${exerciseId} favorited!`);
+    } catch (error) {
+      console.error('Error favoriting exercise:', error.message);
+    }
+  };
+
   return (
     <div>
       <div>
@@ -66,7 +81,12 @@ const ExerciseList = () => {
           <ul>
             {exercises.map((exercise, index) => (
               <li key={index}>
-                <strong>{exercise.name}</strong> - {exercise.instructions}
+                <strong>{exercise.name}</strong> - 
+                <button onClick={() => handleFavoriteClick(exercise.id)}>Favorite</button><br />
+                <p1>{exercise.type}</p1><br />
+                <p>{exercise.equipment}</p><br />
+                <p>{exercise.difficulty}</p><br />
+                <p>{exercise.instructions}</p><br />
               </li>
             ))}
           </ul>
