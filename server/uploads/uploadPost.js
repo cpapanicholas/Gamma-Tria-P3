@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
+const cloudinary = require('cloudinary')
+
 
 // Get All Posts with Media URLs
 router.get('/posts', async (req, res) => {

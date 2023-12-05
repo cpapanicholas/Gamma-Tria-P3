@@ -172,6 +172,7 @@ const resolvers = {
       if (context.user) {
         const post = await Post.create({
           postText,
+          mediaURL,
           postAuthor: context.user.username,
         });
 

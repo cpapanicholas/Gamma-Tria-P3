@@ -111,7 +111,14 @@ query GetAllPublicPrograms($originalId: String) {
   }
 }
 `;
-
+export const QUERY_WORKOUTS_BY_USER = gql`
+  query ExampleQuery($userId: ID!) {
+    getWorkoutsByUserId(userId: $userId) {
+      _id
+      name
+    }
+  }
+`;
 export const QUERY_WORKOUT_BY_ID = gql`
   query GetWorkoutById($id: ID!) {
     getWorkoutById(_id: $id) {

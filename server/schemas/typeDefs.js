@@ -29,6 +29,7 @@ const typeDefs = `
   type Post {
     _id: ID
     postText: String
+    mediaURL: String
     postAuthor: String
     createdAt: String
     comments: [Comment]
