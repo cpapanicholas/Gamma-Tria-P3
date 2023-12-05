@@ -54,6 +54,9 @@ const resolvers = {
         throw new Error('Failed to fetch workouts');
       }
     },
+    getUserWithWorkoutInfo: async (parent, { _id }) => {
+      return User.findOne({ _id })
+    },
     getWorkoutByOriginalId: async (_, { originalId }, context) => {
       try {
         const workout = await Workout.findOne({ originalId: originalId });
@@ -71,7 +74,7 @@ const resolvers = {
     },
     getAllPublicWorkouts: async (_, __, context) => {
       try {
-        const workouts = await Workout.find({ originalId: ''});
+        const workouts = await Workout.find({ originalId: null });
     
         return workouts;
       } catch (error) {
@@ -81,7 +84,7 @@ const resolvers = {
     },
     getAllPublicPrograms: async (_, __, context) => {
       try {
-        const programs = await Program.find({ originalId: ''});
+        const programs = await Program.find({ originalId: null });
     
         return programs;
       } catch (error) {

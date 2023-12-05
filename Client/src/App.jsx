@@ -41,7 +41,7 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <UserProvider>
-        <FileUpload/>
+        {/* <FileUpload/> */}
         <Outlet />
       </UserProvider>
     </ApolloProvider>
