@@ -12,7 +12,7 @@ export const LOGIN = gql`
   }
 `;
 
-export const ADD_USER = gql`
+export const ADD_FRIEND = gql`
   mutation AddUser($input: UserInput) {
     addUser(input: $input) {
       token

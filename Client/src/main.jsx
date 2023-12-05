@@ -10,7 +10,7 @@ import Signup from './pages/signup.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import SearchBar  from './pages/LibraryPage.jsx';
-
+import FriendsList from './pages/friendsPage.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +41,10 @@ const router = createBrowserRouter([
       },{
         path: '/LibraryPage',
         element: <SearchBar />
+      },
+      {
+        path: '/Friends',
+        element: <FriendsList />
       },
      
     ]
