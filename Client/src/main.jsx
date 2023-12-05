@@ -9,9 +9,8 @@ import Login from './pages/login.jsx'
 import Signup from './pages/signup.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
-import Library  from './pages/LibraryPage.jsx';
-// import Friends  from './pages/friendsPage.jsx';
-import MessagesPage from './pages/MessagesPage';
+import SearchBar  from './pages/LibraryPage.jsx';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,16 +40,9 @@ const router = createBrowserRouter([
         element: <WorkoutPage />
       },{
         path: '/LibraryPage',
-        element: <Library />
+        element: <SearchBar />
       },
-      // {
-      //   path: '/friendsPage',
-      //   element: <Friends/>
-      // },
-      {
-        path: '/MessagesPage',
-        element: <MessagesPage />
-      },
+     
     ]
   },
 ]);

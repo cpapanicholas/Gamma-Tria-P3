@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Footer from '../components/Footer/index'
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all'); // Default filter value
