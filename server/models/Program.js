@@ -26,7 +26,6 @@ const programSchema = new Schema({
         {
             day: {
                 type: String,
-                required: true,
                 trim: true,
             },
             workout: {

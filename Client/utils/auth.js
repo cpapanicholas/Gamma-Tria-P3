@@ -27,13 +27,13 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  login(idToken) {
-    localStorage.setItem('id_token', idToken);
-    // window.location.assign('/home');
+  login(tokenId) {
+    localStorage.setItem('id_token', tokenId);
+    window.location.assign('/home');
   }
 
   logout() {
-    localStorage.removeItem('id_token');
+    localStorage.removeItem('userInfo');
     window.location.reload();
   }
 }

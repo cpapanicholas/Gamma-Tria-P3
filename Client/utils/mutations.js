@@ -155,13 +155,28 @@ export const REMOVE_FRIEND = gql`
 import { gql } from '@apollo/client';
 
 export const LOGIN = gql`
-  mutation Mutation($email: String!, $password: String!) {
+  mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      user {
-        username
-        _id
-      }
       token
+      user {
+        _id
+        firstName
+        lastName
+        username
+        email
+        posts {
+          _id
+        }
+        friends {
+          _id
+        }
+        workouts {
+          _id
+        }
+        programs {
+          _id
+        }
+      }
     }
   }
 `;
