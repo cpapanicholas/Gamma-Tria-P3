@@ -16,9 +16,5 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.0"
-  },
-  "dependencies": {
-    "apollo-server-express": "^3.13.0",
-    "socket.io-client": "^4.7.2"
   }
 }
