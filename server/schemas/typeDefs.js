@@ -172,6 +172,7 @@ const typeDefs = `
 
   type Query {
     getAllUsers: [User]
+    getUserWithWorkoutInfo(_id: ID!): User
     getUser(_id: ID!): User
     getAllPostsOfUser(_id: ID!): [Post]
     me: User
