@@ -45,6 +45,20 @@ const resolvers = {
         throw new Error('Failed to fetch workout');
       }
     },
+    getWorkoutsByUserId: async (_, { userid }) => {
+      try {
+        const workout = await Workout.find({ userId: userid });
+
+        if (!workout) {
+          throw new Error('Workout not found');
+        }
+        return workout;
+      } catch (error) {
+        console.error(error)
+        console.error('Error fetching workout:', error.message);
+        throw new Error('Failed to fetch workout');
+      }
+    },
     getAllWorkouts: async () => {
       try {
         const workouts = await Workout.find();
