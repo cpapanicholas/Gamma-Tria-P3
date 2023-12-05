@@ -182,6 +182,7 @@ const typeDefs = `
     getAllWorkouts: [Workout]!
     getWorkoutByOriginalId(originalId: ID!): Workout
     getProgramsByByUser(userId: ID!): [Program]
+    getAllExercises: [Exercise]!
   }
   `;
   

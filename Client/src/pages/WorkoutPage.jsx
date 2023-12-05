@@ -3,10 +3,10 @@ import Footer from "../components/Footer";
 import ProgramCard from "../components/ProgramCard";
 import { useMutation } from '@apollo/client';
 import ExerciseCardContainer from "../components/ExercisePageUI/ExerciseCardContainer";
-import { UPDATE_WORKOUT } from '../../utils/mutations'
+// import { UPDATE_WORKOUT } from '../../utils/mutations'
 
 export default function WorkoutPage (props) {
-  const [updateWorkout, { error, data }] = useMutation(UPDATE_WORKOUT);
+  // const [updateWorkout, { error, data }] = useMutation(UPDATE_WORKOUT);
   
   const workout = {
     _Id: 1,

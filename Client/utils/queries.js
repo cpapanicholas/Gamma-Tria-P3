@@ -96,5 +96,26 @@ export const QUERY_GET_ALL_PROGRAMS = gql`
     }
   }
 `;
- 
 
+export const GET_ALL_EXERCISES = gql`
+query {
+  getAllExercises {
+    id
+    name
+    description
+  }
+}
+`;
+ 
+// export const FETCH_EXERCISES = gql`
+//   query {
+//     exercises {
+//       name
+//       type
+//       muscle
+//       equipment
+//       difficulty
+//       instructions
+//     }
+//   }
+// `;
