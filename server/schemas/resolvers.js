@@ -1,25 +1,8 @@
-const { User, Post, Program, Workout, Friend } = require('../models');
+const { User, Post, Program, Workout, Friend, Exercise } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const { createWriteStream } = require('fs');
 const { resolve } = require('path');
 
-// const { graphqlUploadExpress } = require('graphql-upload');
-
-// const processUpload = async (file, subdirectory) => {
-//   const { createReadStream, filename } = await file;
-
-//   // Specify the path to store the uploaded file
-//   const filePath = resolve(__dirname, 'uploads', subdirectory, filename);
-
-//   // Create a writable stream and pipe the read stream to it
-//   const writeStream = createWriteStream(filePath);
-//   await new Promise((resolve) =>
-//     createReadStream().pipe(writeStream).on('finish', resolve)
-//   );
-
-//   // Return the file path or URL
-//   return filePath; // Adjust this based on your needs
-// };
 const resolvers = {
   Query: {
     getAllUsers: async () => {
@@ -71,9 +54,11 @@ const resolvers = {
         throw new Error('Failed to fetch workouts');
       }
     },
+    getUserWithWorkoutInfo: async (parent, { _id }) => {
+      return User.findOne({ _id })
+    },
     getWorkoutByOriginalId: async (_, { originalId }, context) => {
       try {
-        // Assuming you're using Mongoose for MongoDB
         const workout = await Workout.findOne({ originalId: originalId });
     
         if (!workout) {
@@ -89,8 +74,7 @@ const resolvers = {
     },
     getAllPublicWorkouts: async (_, __, context) => {
       try {
-        // Assuming you're using Mongoose for MongoDB
-        const workouts = await Workout.find({ originalId: ''});
+        const workouts = await Workout.find({ originalId: null });
     
         return workouts;
       } catch (error) {
@@ -100,8 +84,7 @@ const resolvers = {
     },
     getAllPublicPrograms: async (_, __, context) => {
       try {
-        // Assuming you're using Mongoose for MongoDB
-        const programs = await Program.find({ originalId: ''});
+        const programs = await Program.find({ originalId: null });
     
         return programs;
       } catch (error) {
@@ -111,7 +94,6 @@ const resolvers = {
     },
     getProgramById: async (_, { programId }, context) => {
       try {
-        // Assuming you're using Mongoose for MongoDB
         const program = await Program.findById(programId);
     
         if (!program) {
@@ -126,7 +108,6 @@ const resolvers = {
     },
     getProgramsByByUser: async (_, { userId }, context) => {
       try {
-        // Assuming you're using Mongoose for MongoDB
         const programs = await Program.find({ userId: userId });
     
         if (!programs) {
@@ -137,6 +118,15 @@ const resolvers = {
       } catch (error) {
         console.error('Error fetching programs:', error.message);
         throw new Error('Failed to fetch programs');
+      }
+    },
+    getAllExercises: async () => {
+      try {
+        const exercises = await Exercise.find();
+        return exercises;
+      } catch (error) {
+        console.error(error);
+        throw new Error('Error fetching exercises');
       }
     },
   },
@@ -240,24 +230,17 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    // createWorkout: async (parent, { input }, context) => {
-    //   try {
-    //     const workout = await Workout.create(input);
-
-    //     await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $addToSet: { workouts: workout._id } }
-    //     );
-
-    //     return workout;
-    //   } catch (error) {
-    //     throw new Error('Error creating workout');
-    //   }
-    // },
     createProgram: async (_, { programInput }, context) => {
       try {
         // Assuming you're using Mongoose for MongoDB
         const program = await Program.create(programInput);
+
+        if (programInput.userId != "") {
+          await User.findOneAndUpdate(
+            { _id: programInput.userId },
+            { $addToSet: { workouts: programInput._id } }
+          );
+        }
     
         return program;
       } catch (error) {
@@ -266,18 +249,6 @@ const resolvers = {
         throw new Error('Failed to create program');
       }
     },
-    // addProgram: async (parent, { programId }, context) => {
-    //   if (context.user) {
-    //     return User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $addToSet: { programs: programId } }
-    //     );
-    //   }
-    //   throw AuthenticationError;
-    // },
-    // uploadFile: async (_, { file }) => {
-    //   return processUpload(file, 'uploads');
-    // },
     addFriend: async (parent, { friendId }, context) => {
       if (context.user) {
         const friend = await Friend.create({
@@ -340,7 +311,6 @@ const resolvers = {
     },
     createWorkout: async (_, { workoutInput }, context) => {
       try {
-        // Assuming you're using Mongoose for MongoDB
         const createdWorkout = await Workout.create(workoutInput);
 
         if (workoutInput.userId != "") {

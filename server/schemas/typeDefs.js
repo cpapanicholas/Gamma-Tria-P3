@@ -156,7 +156,7 @@ const typeDefs = `
     dateCompleted: String
     workout: [WorkoutPhaseInput!]!
   }
-  
+
   type Mutation {
     updateWorkout(workoutId: ID!, updatedWorkout: WorkoutInput!): Workout
     createWorkout(workoutInput: CreateWorkoutInput!): Workout
@@ -172,6 +172,7 @@ const typeDefs = `
 
   type Query {
     getAllUsers: [User]
+    getUserWithWorkoutInfo(_id: ID!): User
     getUser(_id: ID!): User
     getAllPostsOfUser(_id: ID!): [Post]
     me: User
@@ -182,19 +183,16 @@ const typeDefs = `
     getAllWorkouts: [Workout]!
     getWorkoutByOriginalId(originalId: ID!): Workout
     getProgramsByByUser(userId: ID!): [Program]
+    getAllExercises: [Exercise]!
   }
   `;
   
   module.exports = typeDefs;
   
+  // removeFriend(friendId: ID!): User
   
   // addUser(firstName: String!, lastName: String!, Username: String!, email: String!, password: String!): Auth
   // addUser(input: UserInput): Auth
   
-  // uploadFile(file: Upload!): String!
-  // removeFriend(friendId: ID!): RemoveFriendResponse
 
 
-
-
-  

@@ -1,36 +1,26 @@
 import Footer from "../components/Footer";
 import ProgramCard from "../components/ProgramCard";
 import { useQuery } from '@apollo/client';
-import { LOGIN } from '../../utils/mutations';
 import { useUserContext } from "../../utils/UserContext";
 import { useContext } from 'react';
+import { QUERY_USER_WITH_WORKOUT_INFO } from '../../utils/queries';
+import Auth from '../../utils/auth';
 
-export default function MyPrograms ({ post }) {
-  const userContext = useUserContext();
-  // console.log(UserContext);
-  const programs = [
-    {
-      programId: 1,
-      workoutId: 1,
-    },
-    {
-      programId: 2,
-      workoutId: 2,
-    },
-    {
-      programId: 3,
-      workoutId: 3,
-    },
-    {
-      programId: 4,
-      workoutId: 4,
-    }
-  ]
-  console.log(userContext);
+export default function MyPrograms({ post }) {
+  const userInfo = Auth.getProfile();
+  console.log(userInfo);
+  const { loading, error, data } = useQuery(QUERY_USER_WITH_WORKOUT_INFO, {
+    variables: { id: "656eaf3398df1d462af832d0" },
+  });
+  console.log(data);
+  const programs = [];
+
   return (
-    <div className='myPrograms-container'>
-      {programs.map((program) => <ProgramCard program={program}/>)}
-      <Footer/>
+    <div className="myPrograms-container">
+      {programs.map((program) => (
+        <ProgramCard key={program} program={program} />
+      ))}
+      <Footer />
     </div>
   );
 }

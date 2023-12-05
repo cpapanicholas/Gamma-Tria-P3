@@ -1,317 +1,319 @@
-const workouts = [
-  {
-    "userId": "",
-    "originalId": "",
-    "name": "Workout 1",
-    "description": "Strength training for chest and back",
-    "workout": [
-      {
-        "phase": "1",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Bench Press",
-              "type": "Strength",
-              "muscle": "Chest",
-              "equipment": "Barbell",
-              "difficulty": "Beginner",
-              "instructions": "Focus on proper form"
-            },
-            "sets": [
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 }
-            ]
-          }
-        ]
-      },
-      {
-        "phase": "2",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Single Arm Row",
-              "type": "Strength",
-              "muscle": "Back",
-              "equipment": "Dumbbell",
-              "difficulty": "Beginner",
-              "instructions": "Maintain a straight back"
-            },
-            "sets": [
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "userId": "",
-    "originalId": "",
-    "name": "Workout 2",
-    "description": "Leg day workout with squats and lunges",
-    "workout": [
-      {
-        "phase": "1",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Squat",
-              "type": "Strength",
-              "muscle": "Legs",
-              "equipment": "Barbell",
-              "difficulty": "Intermediate",
-              "instructions": "Maintain proper depth"
-            },
-            "sets": [
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 }
-            ]
-          }
-        ]
-      },
-      {
-        "phase": "2",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Lunges",
-              "type": "Strength",
-              "muscle": "Legs",
-              "equipment": "Bodyweight",
-              "difficulty": "Intermediate",
-              "instructions": "Alternate legs with each rep"
-            },
-            "sets": [
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "userId": "",
-    "originalId": "",
-    "name": "Workout 3",
-    "description": "Strength training for chest and back",
-    "workout": [
-      {
-        "phase": "1",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Bench Press",
-              "type": "Strength",
-              "muscle": "Chest",
-              "equipment": "Barbell",
-              "difficulty": "Beginner",
-              "instructions": "Focus on proper form"
-            },
-            "sets": [
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 }
-            ]
-          }
-        ]
-      },
-      {
-        "phase": "2",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Single Arm Row",
-              "type": "Strength",
-              "muscle": "Back",
-              "equipment": "Dumbbell",
-              "difficulty": "Beginner",
-              "instructions": "Maintain a straight back"
-            },
-            "sets": [
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "userId": "",
-    "originalId": "",
-    "name": "Workout 4",
-    "description": "Leg day workout with squats and lunges",
-    "workout": [
-      {
-        "phase": "1",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Squat",
-              "type": "Strength",
-              "muscle": "Legs",
-              "equipment": "Barbell",
-              "difficulty": "Intermediate",
-              "instructions": "Maintain proper depth"
-            },
-            "sets": [
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 }
-            ]
-          }
-        ]
-      },
-      {
-        "phase": "2",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Lunges",
-              "type": "Strength",
-              "muscle": "Legs",
-              "equipment": "Bodyweight",
-              "difficulty": "Intermediate",
-              "instructions": "Alternate legs with each rep"
-            },
-            "sets": [
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "userId": "",
-    "originalId": "",
-    "name": "Workout 5",
-    "description": "Strength training for chest and back",
-    "workout": [
-      {
-        "phase": "1",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Bench Press",
-              "type": "Strength",
-              "muscle": "Chest",
-              "equipment": "Barbell",
-              "difficulty": "Beginner",
-              "instructions": "Focus on proper form"
-            },
-            "sets": [
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 }
-            ]
-          }
-        ]
-      },
-      {
-        "phase": "2",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Single Arm Row",
-              "type": "Strength",
-              "muscle": "Back",
-              "equipment": "Dumbbell",
-              "difficulty": "Beginner",
-              "instructions": "Maintain a straight back"
-            },
-            "sets": [
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "userId": "",
-    "originalId": "",
-    "name": "Workout 6",
-    "description": "Leg day workout with squats and lunges",
-    "workout": [
-      {
-        "phase": "1",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Squat",
-              "type": "Strength",
-              "muscle": "Legs",
-              "equipment": "Barbell",
-              "difficulty": "Intermediate",
-              "instructions": "Maintain proper depth"
-            },
-            "sets": [
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 },
-              { "reps": 5, "weight": 0 }
-            ]
-          }
-        ]
-      },
-      {
-        "phase": "2",
-        "exercises": [
-          {
-            "exercise": {
-              "name": "Lunges",
-              "type": "Strength",
-              "muscle": "Legs",
-              "equipment": "Bodyweight",
-              "difficulty": "Intermediate",
-              "instructions": "Alternate legs with each rep"
-            },
-            "sets": [
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 },
-              { "reps": 10, "weight": 0 }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-]
+// const { number } = require("prop-types");
+
+// const workouts = [
+//   {
+//     "userId": "",
+//     "originalId": "",
+//     "name": "Workout 1",
+//     "description": "Strength training for chest and back",
+//     "workout": [
+//       {
+//         "phase": "1",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Bench Press",
+//               "type": "Strength",
+//               "muscle": "Chest",
+//               "equipment": "Barbell",
+//               "difficulty": "Beginner",
+//               "instructions": "Focus on proper form"
+//             },
+//             "sets": [
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       },
+//       {
+//         "phase": "2",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Single Arm Row",
+//               "type": "Strength",
+//               "muscle": "Back",
+//               "equipment": "Dumbbell",
+//               "difficulty": "Beginner",
+//               "instructions": "Maintain a straight back"
+//             },
+//             "sets": [
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     "userId": "",
+//     "originalId": "",
+//     "name": "Workout 2",
+//     "description": "Leg day workout with squats and lunges",
+//     "workout": [
+//       {
+//         "phase": "1",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Squat",
+//               "type": "Strength",
+//               "muscle": "Legs",
+//               "equipment": "Barbell",
+//               "difficulty": "Intermediate",
+//               "instructions": "Maintain proper depth"
+//             },
+//             "sets": [
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       },
+//       {
+//         "phase": "2",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Lunges",
+//               "type": "Strength",
+//               "muscle": "Legs",
+//               "equipment": "Bodyweight",
+//               "difficulty": "Intermediate",
+//               "instructions": "Alternate legs with each rep"
+//             },
+//             "sets": [
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     "userId": "",
+//     "originalId": "",
+//     "name": "Workout 3",
+//     "description": "Strength training for chest and back",
+//     "workout": [
+//       {
+//         "phase": "1",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Bench Press",
+//               "type": "Strength",
+//               "muscle": "Chest",
+//               "equipment": "Barbell",
+//               "difficulty": "Beginner",
+//               "instructions": "Focus on proper form"
+//             },
+//             "sets": [
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       },
+//       {
+//         "phase": "2",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Single Arm Row",
+//               "type": "Strength",
+//               "muscle": "Back",
+//               "equipment": "Dumbbell",
+//               "difficulty": "Beginner",
+//               "instructions": "Maintain a straight back"
+//             },
+//             "sets": [
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     "userId": "",
+//     "originalId": "",
+//     "name": "Workout 4",
+//     "description": "Leg day workout with squats and lunges",
+//     "workout": [
+//       {
+//         "phase": "1",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Squat",
+//               "type": "Strength",
+//               "muscle": "Legs",
+//               "equipment": "Barbell",
+//               "difficulty": "Intermediate",
+//               "instructions": "Maintain proper depth"
+//             },
+//             "sets": [
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       },
+//       {
+//         "phase": "2",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Lunges",
+//               "type": "Strength",
+//               "muscle": "Legs",
+//               "equipment": "Bodyweight",
+//               "difficulty": "Intermediate",
+//               "instructions": "Alternate legs with each rep"
+//             },
+//             "sets": [
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     "userId": "",
+//     "originalId": "",
+//     "name": "Workout 5",
+//     "description": "Strength training for chest and back",
+//     "workout": [
+//       {
+//         "phase": "1",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Bench Press",
+//               "type": "Strength",
+//               "muscle": "Chest",
+//               "equipment": "Barbell",
+//               "difficulty": "Beginner",
+//               "instructions": "Focus on proper form"
+//             },
+//             "sets": [
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       },
+//       {
+//         "phase": "2",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Single Arm Row",
+//               "type": "Strength",
+//               "muscle": "Back",
+//               "equipment": "Dumbbell",
+//               "difficulty": "Beginner",
+//               "instructions": "Maintain a straight back"
+//             },
+//             "sets": [
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     "userId": "",
+//     "originalId": "",
+//     "name": "Workout 6",
+//     "description": "Leg day workout with squats and lunges",
+//     "workout": [
+//       {
+//         "phase": "1",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Squat",
+//               "type": "Strength",
+//               "muscle": "Legs",
+//               "equipment": "Barbell",
+//               "difficulty": "Intermediate",
+//               "instructions": "Maintain proper depth"
+//             },
+//             "sets": [
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 },
+//               { "reps": 5, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       },
+//       {
+//         "phase": "2",
+//         "exercises": [
+//           {
+//             "exercise": {
+//               "name": "Lunges",
+//               "type": "Strength",
+//               "muscle": "Legs",
+//               "equipment": "Bodyweight",
+//               "difficulty": "Intermediate",
+//               "instructions": "Alternate legs with each rep"
+//             },
+//             "sets": [
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 },
+//               { "reps": 10, "weight": 0 }
+//             ]
+//           }
+//         ]
+//       }
+//     ]
+//   },
+// ]
 
 // {
 //   "programInput": {
@@ -539,6 +541,359 @@ const workoutPostText = [
   'One more rep, one step closer to my fitness goals.'
 ];
 
+const gymUsernames = [
+  'FitExplorer',
+  'IronWarrior',
+  'FlexMaster',
+  'CardioChamp',
+  'MuscleMaven',
+  'PowerLifterPro',
+  'SweatSculptor',
+  'GymGuru',
+  'BeastModeBoss',
+  'FitFury',
+  'IronSculptor',
+  'FitnessPhoenix',
+  'BodyBlitz',
+  'GymJunkie',
+  'SweatElite',
+  'RippedRonin',
+  'IronGladiator',
+  'FlexFiesta',
+  'GymHercules',
+  'CardioCrusader',
+  'SquatSultan',
+  'LiftLegend',
+  'PumpPioneer',
+  'GymnasticsGuru',
+  'ActiveAlpha',
+  'MuscleMaestro',
+  'FitPhoenix',
+  'FlexFusion',
+  'PowerPulse',
+  'SweatSymphony',
+  'GymVoyager',
+  'BodyBlast',
+  'GymGazelle',
+  'CardioCaptain',
+  'SculptureSprint',
+  'IronInferno',
+  'FitFlare',
+  'PulsePioneer',
+  'GymGazelle',
+  'CardioCommando',
+  'BodyBomber',
+  'LiftLynx',
+  'SweatSamurai',
+  'GymGargoyle',
+  'FlexFury',
+  'IronInsider',
+  'FitFlame',
+  'SweatSensei'
+];
+
+const exercises = [
+  {
+    name: 'Push-Up',
+    type: 'Bodyweight',
+    muscle: 'Chest',
+    equipment: 'None',
+    difficulty: 'Beginner',
+    instructions: 'Start in a plank position, lower your body by bending your elbows, and then push back up.'
+  },
+  {
+    name: 'Squat',
+    type: 'Strength',
+    muscle: 'Legs',
+    equipment: 'None',
+    difficulty: 'Beginner',
+    instructions: 'Stand with feet shoulder-width apart, lower your hips by bending your knees, and then stand back up.'
+  },
+  {
+    name: 'Bicep Curl',
+    type: 'Strength',
+    muscle: 'Biceps',
+    equipment: 'Dumbbells',
+    difficulty: 'Intermediate',
+    instructions: 'Hold dumbbells in each hand, curl them towards your shoulders, and then lower them back down.'
+  },
+  {
+    name: 'Plank',
+    type: 'Core',
+    muscle: 'Abdominals',
+    equipment: 'None',
+    difficulty: 'Intermediate',
+    instructions: 'Maintain a straight line from head to heels in a plank position, engaging your core muscles.'
+  },
+  {
+    name: 'Deadlift',
+    type: 'Strength',
+    muscle: 'Back',
+    equipment: 'Barbell',
+    difficulty: 'Intermediate',
+    instructions: 'With a barbell in front of you, bend at the hips and knees to lower the barbell, then stand back up.'
+  },
+  {
+    name: 'Lunges',
+    type: 'Strength',
+    muscle: 'Legs',
+    equipment: 'None',
+    difficulty: 'Intermediate',
+    instructions: 'Step forward with one foot, lower your hips, and then push back to the starting position. Repeat on the other leg.'
+  },
+  {
+    name: 'Mountain Climbers',
+    type: 'Cardio',
+    muscle: 'Core',
+    equipment: 'None',
+    difficulty: 'Intermediate',
+    instructions: 'In a plank position, alternate bringing your knees towards your chest in a running motion.'
+  },
+  {
+    name: 'Tricep Dips',
+    type: 'Strength',
+    muscle: 'Triceps',
+    equipment: 'Parallel Bars',
+    difficulty: 'Intermediate',
+    instructions: 'Lower your body between parallel bars by bending your elbows, then push back up.'
+  },
+  {
+    name: 'Burpees',
+    type: 'Cardio',
+    muscle: 'Full Body',
+    equipment: 'None',
+    difficulty: 'Advanced',
+    instructions: 'Combine a squat, push-up, and jump in one fluid motion.'
+  },
+  {
+    name: 'Pull-Ups',
+    type: 'Strength',
+    muscle: 'Back',
+    equipment: 'Pull-Up Bar',
+    difficulty: 'Advanced',
+    instructions: 'Hang from a bar with palms facing away, pull your body up until your chin is over the bar.'
+  },
+  {
+    name: 'Russian Twists',
+    type: 'Core',
+    muscle: 'Obliques',
+    equipment: 'None',
+    difficulty: 'Intermediate',
+    instructions: 'Sit on the floor, lean back slightly, and twist your torso to touch the floor on each side.'
+  },
+  {
+    name: 'Box Jumps',
+    type: 'Cardio',
+    muscle: 'Legs',
+    equipment: 'Box',
+    difficulty: 'Intermediate',
+    instructions: 'Jump onto a box or platform, landing with both feet, then step back down.'
+  },
+  {
+    name: 'Chest Press',
+    type: 'Strength',
+    muscle: 'Chest',
+    equipment: 'Barbell',
+    difficulty: 'Intermediate',
+    instructions: 'Lying on a bench, lower a barbell to your chest, and then push it back up.'
+  },
+  {
+    name: 'Kettlebell Swing',
+    type: 'Cardio',
+    muscle: 'Full Body',
+    equipment: 'Kettlebell',
+    difficulty: 'Intermediate',
+    instructions: 'Swing a kettlebell between your legs, then drive your hips forward to swing it to shoulder height.'
+  },
+  {
+    name: 'Leg Press',
+    type: 'Strength',
+    muscle: 'Legs',
+    equipment: 'Leg Press Machine',
+    difficulty: 'Intermediate',
+    instructions: 'Press the platform away with your feet, extending your legs, then bend your knees to bring it back.'
+  },
+  {
+    name: 'Dumbbell Shoulder Press',
+    type: 'Strength',
+    muscle: 'Shoulders',
+    equipment: 'Dumbbells',
+    difficulty: 'Intermediate',
+    instructions: 'Hold dumbbells at shoulder height, then press them overhead, extending your arms.'
+  },
+  {
+    name: 'Hanging Leg Raise',
+    type: 'Core',
+    muscle: 'Abdominals',
+    equipment: 'Pull-Up Bar',
+    difficulty: 'Intermediate',
+    instructions: 'Hang from a pull-up bar and lift your legs towards your chest, engaging your core muscles.'
+  },
+  {
+    name: 'Seated Cable Row',
+    type: 'Strength',
+    muscle: 'Back',
+    equipment: 'Cable Machine',
+    difficulty: 'Intermediate',
+    instructions: 'Sit at a cable row machine, grab the handles, and pull them towards you, squeezing your shoulder blades.'
+  },
+  {
+    name: 'Boxing Jab-Cross',
+    type: 'Cardio',
+    muscle: 'Arms',
+    equipment: 'Boxing Gloves',
+    difficulty: 'Intermediate',
+    instructions: 'Stand in a boxing stance, throw a quick jab with your front hand, followed by a cross with your rear hand.'
+  },
+  {
+    name: 'Reverse Lunges with Dumbbells',
+    type: 'Strength',
+    muscle: 'Legs',
+    equipment: 'Dumbbells',
+    difficulty: 'Intermediate',
+    instructions: 'Hold dumbbells in each hand, step backward into a lunge, and then return to the starting position.'
+  },
+];
+
+const workoutNames = [
+  'Full Body Blast',
+  'Core Crusher',
+  'Leg Day Intensity',
+  'Upper Body Sculpt',
+  'Cardio Inferno',
+  'Strength Fusion',
+  'Total Body Toning',
+  'Endurance Challenge',
+  'Power Plyometrics',
+  'HIIT Havoc',
+  'Flexibility Flow',
+  'Circuit Blitz',
+  'Tabata Torch',
+  'Muscle Mayhem',
+  'Agility Agility',
+  'Stamina Surge',
+  'Balance Builder',
+  'Functional Fitness',
+  'Bodyweight Burn',
+  'Metabolic Meltdown',
+];
+
+const workoutDescriptions = [
+  'A high-intensity full-body workout designed to target every major muscle group for maximum calorie burn and muscle engagement.',
+  'Focus on strengthening your core with dynamic exercises that challenge your abdominal muscles and improve stability.',
+  'An intense leg day workout to build strength and endurance in your lower body, incorporating squats, lunges, and more.',
+  'Sculpt and tone your upper body with a variety of resistance exercises targeting the arms, shoulders, chest, and back.',
+  'Boost your cardiovascular fitness with a high-energy cardio workout that includes dynamic movements to get your heart pumping.',
+  'Combine strength training and flexibility exercises in this workout to improve overall muscle tone and range of motion.',
+  'Target every muscle group in this total body toning session, using a mix of weights and bodyweight exercises.',
+  'Challenge your endurance with a series of exercises designed to push your limits and enhance cardiovascular fitness.',
+  'Powerful plyometric exercises to increase explosive strength and agility, incorporating jumps, hops, and quick movements.',
+  'High-Intensity Interval Training (HIIT) circuit that alternates between short bursts of intense activity and brief rest periods.',
+  'Improve flexibility and release tension with a sequence of stretches and yoga-inspired movements in this flow workout.',
+  'A circuit-style workout that moves you through a series of exercises to keep your heart rate up and build strength.',
+  'Tabata-style workout with short, intense intervals followed by brief rests to maximize calorie burn and improve fitness.',
+  'Intense muscle-focused exercises to create mayhem in your muscles, promoting growth and strength development.',
+  'Improve agility and coordination with a workout that incorporates dynamic movements and quick directional changes.',
+  'Build stamina and endurance with a challenging workout that gradually increases intensity and duration.',
+  'Enhance balance and stability through exercises that engage your core and challenge your proprioception.',
+  'Functional fitness routine that mimics everyday movements to improve overall strength and mobility.',
+  'Bodyweight-only workout designed to burn calories and build strength using your own body resistance.',
+  'Metabolic workout to boost your metabolism and burn calories long after the workout is complete.',
+];
+
+const programNames = [
+  'Ultimate Strength Challenge',
+  'Lean and Mean Transformation',
+  'Total Body Shred Program',
+  'Functional Fitness Mastery',
+  'Cardio Conditioning Intensive',
+  'Muscle Builder Bootcamp',
+  'Core Power Transformation',
+  'Endurance Elite Program',
+  'HIIT Revolution',
+  'Bodyweight Blitz Challenge',
+  'Flexibility Fusion Journey',
+  'Metabolic Overhaul Program',
+  'Weight Loss Warrior Plan',
+  'Athletic Performance Boost',
+  'Mindful Movement Program',
+];
+
+const programDescriptions = [
+  'A comprehensive strength training program designed to push your limits and build ultimate strength in all major muscle groups.',
+  'Transform your physique with a program focused on lean muscle development, fat loss, and achieving a toned, athletic look.',
+  'Shred body fat and sculpt your entire body with a total body workout program that combines strength training and cardio.',
+  'Master functional movements and improve your overall fitness with a program that enhances your everyday physical abilities.',
+  'Boost your cardiovascular endurance with an intensive program that challenges your heart and lungs through dynamic exercises.',
+  'Build muscle mass and increase strength with a bootcamp-style program that incorporates challenging resistance training.',
+  'Transform your core with a program dedicated to strengthening your abdominal muscles and improving core stability.',
+  'Enhance your stamina and endurance with a program designed to improve your cardiovascular fitness and aerobic capacity.',
+  'Experience the revolution of High-Intensity Interval Training (HIIT) with a program that maximizes calorie burn and fitness gains.',
+  'Achieve impressive results using only your bodyweight in this challenging program designed for strength and endurance.',
+  'Improve flexibility, mobility, and balance with a fusion program that incorporates yoga-inspired movements and stretches.',
+  'Revitalize your metabolism and burn calories with a program designed to boost your metabolic rate and promote fat loss.',
+  'Embark on a weight loss journey with a program that combines effective workouts and nutrition strategies for lasting results.',
+  'Optimize your athletic performance with a program that hones in on sport-specific training to enhance skills and fitness.',
+  'Embrace mindful movement with a program that combines physical exercise with mindfulness practices for holistic well-being.',
+];
+
+const workoutChoices = (createdWorkouts) => {
+  const number = getRandomNumber();
+  const workoutChoices = []
+  for (let i = 1; i < number; i++) {
+    if (createdWorkouts[i]) {
+      workoutChoices.push({
+        day: `Day ${i}`,
+        workout: createdWorkouts[i]._id
+      })
+    }
+  }
+  return workoutChoices
+}
+
+const createWorkout = () => {
+  const randomWorkoutName = getRandomArrItem(workoutNames)
+  const randomWorkoutDescription = getRandomArrItem(workoutDescriptions)
+  const workouts = createPhase()
+  
+  return {
+    name: randomWorkoutName,
+    description: randomWorkoutDescription,
+    workout: workouts
+  }
+}
+
+const createExercisePhase = () => {
+  const exerciseOptions = []
+  for (let i = 0; i < 1; i++) {
+    const exercise = getRandomArrItem(exercises)
+    exerciseOptions.push({
+      exercise: exercise,
+      sets: [
+        { "reps": 5, "weight": 0, "completed": false },
+        { "reps": 5, "weight": 0, "completed": false },
+        { "reps": 5, "weight": 0, "completed": false },
+        { "reps": 5, "weight": 0, "completed": false },
+        { "reps": 5, "weight": 0, "completed": false }
+      ]
+    })    
+  }
+  return exerciseOptions
+}
+
+const createPhase = () => {
+  const workouts = []
+  const number = getRandomNumber();
+  for (let i = 0; i < number; i++) {
+    const exerciseOptions = createExercisePhase()
+    workouts.push({
+      phase: i,
+      exercises: exerciseOptions
+    })
+  }
+  return workouts
+}
+
 
 // Get a random item given an array
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -554,8 +909,13 @@ const getRandomName = () => {
   return `${getRandomArrItem(names)}${getRandomArrItem(names)}${number}`;
 }
 
+const getRandomUsername = () => {
+  const number = getRandomNumber();
+  return `${getRandomArrItem(gymUsernames)}${number}`;
+}
+
 // Function to generate random assignments that we can add to student object.
-const getRandomPost = () => {
+const getRandomPosts = () => {
   const int = Math.floor(Math.random() * 6)
   const results = [];
   for (let i = 0; i < int; i++) {
@@ -575,5 +935,27 @@ const getRandomComment = () => {
   return results;
 }
 
+const createUser = () => {
+  const number = getRandomNumber()
+  const firstName = getRandomName()
+  const lastName = getRandomName()
+  const username = getRandomUsername()
+  const email = `${username}${number}@gmail.com`; 
+  return {
+    firstName: firstName,
+    lastName: lastName,
+    username: username, 
+    email: email,
+    password: "password"
+  }
+}
+
+const randomProgramDescription = () => {
+  return getRandomArrItem(programDescriptions)
+}
+
+const randomProgramName = () => {
+  return getRandomArrItem(programNames)
+} 
 // Export the functions for use in seed.js
-module.exports = { getRandomName, getRandomPost, getRandomComment, getRandomArrItem, getRandomNumber };
+module.exports = { randomProgramDescription, randomProgramName, workoutChoices, createWorkout, createUser, getRandomPosts, getRandomComment, getRandomArrItem, getRandomNumber };

@@ -4,18 +4,15 @@ const { Schema, model } = require('mongoose');
 const VisibilityOptions = ['public', 'friends'];
 
 const postSchema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User', // Reference to the User model
-        required: true,
-    },
-    // mediaUrl: {
-    //     type: String,
-    //     required: true,
-    // },
-    userComment: {
+    username: {
         type: String,
         required: true,
+    },
+    mediaUrl: {
+        type: String,
+    },
+    postText: {
+        type: String,
     },
     visibility: {
         type: String,
@@ -24,9 +21,8 @@ const postSchema = new Schema({
     },
     comments: [
         {
-            user: {
-                type: Schema.Types.ObjectId,
-                ref: 'User', // Reference to the User model
+            username: {
+                type: String,
                 required: true,
             },
             comment: {
@@ -35,7 +31,6 @@ const postSchema = new Schema({
             },
         },
     ],
-    // Other fields specific to the post
 });
 
 const Post = model('Post', postSchema);
