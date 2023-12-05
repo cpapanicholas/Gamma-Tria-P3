@@ -9,10 +9,9 @@ const postSchema = new Schema({
         ref: 'User', // Reference to the User model
         required: true,
     },
-    // mediaUrl: {
-    //     type: String,
-    //     required: true,
-    // },
+    mediaUrl: {
+        type: String,
+    },
     userComment: {
         type: String,
         required: true,
@@ -35,7 +34,6 @@ const postSchema = new Schema({
             },
         },
     ],
-    // Other fields specific to the post
 });
 
 const Post = model('Post', postSchema);
