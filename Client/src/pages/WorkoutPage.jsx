@@ -3,93 +3,28 @@ import Footer from "../components/Footer";
 import ProgramCard from "../components/ProgramCard";
 import { useMutation } from '@apollo/client';
 import ExerciseCardContainer from "../components/ExercisePageUI/ExerciseCardContainer";
-// import { UPDATE_WORKOUT } from '../../utils/mutations'
+
+import { UPDATE_WORKOUT } from '../../utils/mutations'
+import { useQuery } from '@apollo/client';
+import { QUERY_WORKOUT_BY_ID } from '../../utils/queries';
+import { useParams } from 'react-router-dom';
 
 export default function WorkoutPage (props) {
-  // const [updateWorkout, { error, data }] = useMutation(UPDATE_WORKOUT);
-  
-  const workout = {
-    _Id: 1,
-    name: 'test',
-    workout: [
-      {
-        phase: 'A',
-        exercises: [
-          {
-            exercise: {
-              name: 'bench',
-              type: 'strength',
-              muscle: 'chest',
-              equipment: 'barbell',
-              difficulty: 'beginner',
-              instructions: 'dont suck',
-              },
-            sets: [
-              { reps: 5, weight: 0 },
-              { reps: 5, weight: 0 },
-              { reps: 5, weight: 0 },
-              { reps: 5, weight: 0 },
-              { reps: 7, weight: 0 },
-            ],
-          },
-          {
-            exercise: {
-              name: 'pull-up',
-              type: 'strength',
-              muscle: 'back',
-              equipment: 'pull-up bar',
-              difficulty: 'beginner',
-              instructions: 'dont suck',
-            },
-            sets: [
-              { reps: 5, weight: 0 },
-              { reps: 5, weight: 0 },
-              { reps: 5, weight: 0 },
-              { reps: 5, weight: 0 },
-              { reps: 5, weight: 0 },
-            ],
-          },
-        ],
-      },
-      {
-        phase: 'B',
-        exercises: [
-          {
-            exercise: {
-              name: 'squat',
-              type: 'strength',
-              muscle: 'legs',
-              equipment: 'barbell',
-              difficulty: 'beginner',
-              instructions: 'keep your back straight',
-            },
-            sets: [
-              { reps: 5, weight: 0 },
-              { reps: 5, weight: 0 },
-              { reps: 5, weight: 0 },
-              { reps: 7, weight: 0 },
-            ],
-          },
-          {
-            exercise: {
-              name: 'overhead press',
-              type: 'strength',
-              muscle: 'shoulders',
-              equipment: 'dumbbells',
-              difficulty: 'beginner',
-              instructions: 'engage your core',
-            },
-            sets: [
-              { reps: 8, weight: 0 },
-              { reps: 8, weight: 0 },
-              { reps: 8, weight: 0 },
-              { reps: 8, weight: 0 },
-            ],
-          },
-        ],
-      },
-    ]
-  };
+  const [updateWorkout, { error, data }] = useMutation(UPDATE_WORKOUT);
+  let workout = {};
+  const { workoutId } = useParams();
+
+  const { loading, err, res } = useQuery(QUERY_WORKOUT_BY_ID, {
+    variables: { id: workoutId },
+  }); 
+  console.log(loading);
+  console.log(res, workoutId);
+  console.error(err)
+  if (res) {
+    workout = res
+    console.log(workout);
+  }
+
 
   const handleCompleteWorkout = async () => {
     // Assuming workoutId is the ID of the workout you want to update
@@ -108,7 +43,7 @@ export default function WorkoutPage (props) {
 
   return (
     <div className='myPrograms-container'>
-      {workout.workout.map((phase) => (
+      {/* {workout.workout.map((phase) => (
 
         <ExerciseCardContainer key={phase.phase} exercise={phase} />
         
@@ -116,7 +51,7 @@ export default function WorkoutPage (props) {
       <button
         className="btn btn-primary mx-4"
         onClick={handleCompleteWorkout}
-      >Complete Workout</button>
+      >Complete Workout</button> */}
       <Footer/>
     </div>
   );

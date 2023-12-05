@@ -10,7 +10,7 @@ import Signup from './pages/signup.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import Library  from './pages/LibraryPage.jsx';
-import DirectMessagePage  from './pages/DirectMessagePage.jsx';
+// import DirectMessagePage  from './pages/DirectMessagePage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,14 +39,17 @@ const router = createBrowserRouter([
       }, {
         path: '/program/:programId/:workoutId',
         element: <WorkoutPage />
-      },{
-        path: '/LibraryPage',
+      }, {
+        path: '/library',
         element: <Library />
+      }, {
+        path: '/workout/:workoutId',
+        element: <WorkoutPage />
       },
-      {
-        path: '/DirectMessagePage',
-        element: <DirectMessagePage />
-      },
+      // {
+      //   path: '/DirectMessagePage',
+      //   element: <DirectMessagePage />
+      // },
       
       
     ]

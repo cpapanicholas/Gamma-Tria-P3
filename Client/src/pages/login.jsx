@@ -31,8 +31,9 @@ export default function Login(props) {
         variables: { ...formState },
       });
       console.log(data.login);
-      setCurrentUser(data.login.user)
+      setCurrentUser(data.login)
       Auth.login(data.login.token);
+      console.log(Auth.getProfile());
     } catch (e) {
       console.error(e);
     }
