@@ -14,6 +14,11 @@ export default defineConfig({
         secure: false,
       }
     }
+  },
+  build: {
+    rollupOptions: {
+      external: ['@apollo/client'],
+    },
   },  
   test: {
     globals: true,
