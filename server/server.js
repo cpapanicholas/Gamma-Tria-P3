@@ -97,9 +97,6 @@ const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth')
 
-// const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' }); // Specify the destination folder
-
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -138,3 +135,4 @@ const startApolloServer = async () => {
 
 // Call the async function to start the server
 startApolloServer();
+

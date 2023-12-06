@@ -10,6 +10,7 @@ const typeDefs = `
     friends: [Friend]
     workouts: [Workout]
     programs: [Program]
+    favorites: [Exercise]
   }
 
   input UserInput {
@@ -183,6 +184,7 @@ const typeDefs = `
     removeComment(postId: ID!, commentId: ID!): Post
     addFriend(friendId: ID!): Friend
     createProgram(programInput: ProgramInput!): Program
+    favoriteExercise(exerciseId: ID!): User
   }
 
   type Query {
@@ -199,6 +201,7 @@ const typeDefs = `
     getAllWorkouts: [Workout]!
     getWorkoutByOriginalId(originalId: ID!): Workout
     getProgramsByByUser(userId: ID!): [Program]
+    getAllExercises: [Exercise]!
   }
   `;
   
@@ -211,6 +214,3 @@ const typeDefs = `
   
 
 
-
-
-  

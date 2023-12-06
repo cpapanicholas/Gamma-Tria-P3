@@ -4,6 +4,7 @@ import { QUERY_PUBLIC_WORKOUTS } from '../../utils/queries';
 import { QUERY_PUBLIC_PROGRAMS } from '../../utils/queries';
 import ProgramCard from '../components/ProgramCard';
 import WorkoutCard from '../components/WorkoutCard';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 
 const SearchBar = () => {

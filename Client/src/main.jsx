@@ -52,11 +52,16 @@ const router = createBrowserRouter([
       }, {
         path: '/workout/:workoutId',
         element: <WorkoutPage />
-      },
+      }, 
+      // {
+      //   path: '/program/:programId',
+      //   element: <ProgramPage />
+      // },
       // {
       //   path: '/DirectMessagePage',
       //   element: <DirectMessagePage />
       // },
+      
       
     ]
   },
