@@ -7,10 +7,10 @@ import WorkoutCard from '../components/WorkoutCard';
 
 
 const SearchBar = () => {
-  // const workouts = []
-  // const programs = []
-  const [workouts, setWorkouts] = useState([])
-  const [programs, setPrograms] = useState([])
+  const workouts = []
+  const programs = []
+  // const [workouts, setWorkouts] = useState([])
+  // const [programs, setPrograms] = useState([])
 
 
   const { loading: loadingFirst, error: errorFirst, data: dataFirst } = useQuery(QUERY_PUBLIC_WORKOUTS, {
@@ -28,7 +28,7 @@ const SearchBar = () => {
   console.log(dataSecond);
   console.error(errorSecond)
   if (dataSecond) {
-    programs.push(dataSecond.getAllPublicWorkouts)
+    programs.push(dataSecond.getAllPublicPrograms)
     console.log(dataSecond);
   }
 
@@ -97,7 +97,7 @@ const SearchBar = () => {
         </div>
       </div>
     </header>
-    {/* {programs[0] ? programs[0].map((program) => <ProgramCard program={program}/>) : ''} */}
+    {programs[0] ? programs[0].map((program) => <ProgramCard program={program}/>) : ''}
     {workouts[0] ? workouts[0].map((workout) => <WorkoutCard workout={workout}/>) : ''}
    
     </>

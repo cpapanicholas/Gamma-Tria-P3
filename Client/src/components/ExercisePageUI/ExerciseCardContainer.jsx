@@ -1,20 +1,51 @@
-import React, { useState, useEffect } from 'react';
+// exerciseCardContainer.jsx
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import ExerciseCard from './ExerciseCard';
 
-export default function ExerciseCardContainer({ exercise }) {
+export default function ExerciseCardContainer({ exerciseGroup, updateExerciseGroups, exerciseGroupIndex }) {
   const [showSets, setShowSets] = useState(false);
+  const [thisExerciseGroup, setExerciseGroups] = useState(exerciseGroup)
+  const [sets, setSets] = useState([])
 
+  // console.log(thisExerciseGroup);
+  
+
+  // Toggle the visibility of the sets and reps
   const handleDropDownClick = () => {
-    // Toggle the visibility of the table
     setShowSets((prevShowSets) => !prevShowSets);
   };
 
+  const handleExerciseUpdate = (index, updatedData) => {
+    // Update the workout object with the new data for the specific exercise
+    
+    const updatedExerciseGroup = ''
+    updateExerciseGroups(updatedExerciseGroup, exerciseIndex)
+    console.log(index, updatedData);
+  };
+
+  // useEffect(() => {
+  //   if (completedSets.length === exercise.sets) {
+  //     return setAllSetsCompleted(true)
+  //   } else if (completedSets.length != exercise.sets) {
+  //     return setAllSetsCompleted(false)
+  //   }
+  // }, [sets]);
+
   return (
     <div className='exercise-container'>
-      {exercise.exercises.map((exercise, index) => (
-        <ExerciseCard key={exercise.name} exercise={exercise} index={index} showSets={showSets}/>
+      {thisExerciseGroup.exercises.map((exercise, exerciseIndex) => (
+        <ExerciseCard
+          key={exerciseIndex}
+          exercise={exercise}
+          phase={thisExerciseGroup.phase}
+          exerciseIndex={exerciseIndex}
+          showSets={showSets}
+          handleExerciseUpdate={handleExerciseUpdate}
+          sets={sets}
+          setSets={setSets}
+        />
       ))}
       {showSets ? 
       <FontAwesomeIcon
