@@ -1,8 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-// Enum for post visibility
-const VisibilityOptions = ['public', 'friends'];
-
 const postSchema = new Schema({
     username: {
         type: String,
@@ -32,6 +29,10 @@ const postSchema = new Schema({
     },
     comments: [
         {
+            userId: {
+                type: String,
+                
+            },
             username: {
                 type: String,
                 
@@ -44,10 +45,9 @@ const postSchema = new Schema({
                 type: Date,
                 default: Date.now
             },
-            userId: {
-                type: String,
-                
-            },
+            postId: {
+                type: String
+            }
         },
     ],
 });

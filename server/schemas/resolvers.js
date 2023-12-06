@@ -224,13 +224,15 @@ const resolvers = {
         throw new Error('Failed to create post');
       }
     },
-    addComment: async (parent, { postId, commentText }, context) => {
-      if (context.user) {
-        return Post.findOneAndUpdate(
-          { _id: postId },
+    addComment: async (parent, { postId, commentInput }, context) => {
+      console.log('Comment sent');
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const post = await Post.findOneAndUpdate(
+          { _id: commentInput.postId },
           {
             $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
+              comments: commentInput
             },
           },
           {
@@ -238,8 +240,12 @@ const resolvers = {
             runValidators: true,
           }
         );
+    
+        return post;
+      } catch (error) {
+        console.error('Error adding comment:', error.message);
+        throw new Error('Failed to add comment');
       }
-      throw AuthenticationError;
     },
     removePost: async (parent, { postId }, context) => {
       if (context.user) {
