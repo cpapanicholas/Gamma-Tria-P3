@@ -25,6 +25,36 @@ export const QUERY_USER = gql`
     }
   }
 `;
+        
+export const QUERY_POSTS = gql`
+  query getAllPostsOfUser($_id: ID!) {
+    getAllPostsOfUser(_id: $_id) {
+      _id
+      postText
+      postAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
+export const QUERY_SINGLE_POST = gql`
+  query getSinglePost($_id: ID!) {
+    getSinglePost(_id: $_id) {
+      _id
+      postText
+      postAuthor
+      createdAt
+      comments {
+      }
+    }
+  }
+`;
 
 export const QUERY_ORIGINAL_WORKOUT = gql`
 query getWorkoutsByOriginalId($originalId: ID!) {
@@ -57,6 +87,30 @@ export const QUERY_GET_ALL_PROGRAMS = gql`
     }
   }
 `;
+
+export const GET_ALL_EXERCISES = gql`
+query {
+  getAllExercises {
+    id
+    name
+    description
+  }
+}
+`;
+ 
+// export const FETCH_EXERCISES = gql`
+//   query {
+//     exercises {
+//       name
+//       type
+//       muscle
+//       equipment
+//       difficulty
+//       instructions
+//     }
+//   }
+// `;
+
 
 export const QUERY_USER_WITH_WORKOUT_INFO = gql`
   query GetUserWithWorkoutInfo($id: ID!) {
@@ -136,3 +190,4 @@ export const QUERY_WORKOUT_BY_ID = gql`
     }
   }
 `;
+

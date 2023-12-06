@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import ProgramCard from "../components/ProgramCard";
 import { useMutation } from '@apollo/client';
 import ExerciseCardContainer from "../components/ExercisePageUI/ExerciseCardContainer";
+
 import { UPDATE_WORKOUT } from '../../utils/mutations'
 import { useQuery } from '@apollo/client';
 import { QUERY_WORKOUT_BY_ID } from '../../utils/queries';

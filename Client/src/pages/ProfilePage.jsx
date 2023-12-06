@@ -6,6 +6,7 @@ import MyProgress from '../components/MyProgress';
 import MyFriends from '../components/MyFriends';
 import Footer from '../components/Footer/index'
 
+
 export default function MyProfilePage () {
   const profileSections = ['feed', 'progress', 'friends']
   const [profileSection, setProfileSection] = useState('feed');

@@ -180,9 +180,11 @@ const typeDefs = `
     getAllPublicWorkouts(originalId: String): [Workout]
     getProgramById(programId: ID!): Program
     getWorkoutById(_id: ID!): Workout
+    getWorkoutsByUserId(userId: ID!): [Workout]
     getAllWorkouts: [Workout]!
     getWorkoutByOriginalId(originalId: ID!): Workout
     getProgramsByByUser(userId: ID!): [Program]
+    getAllExercises: [Exercise]!
   }
   `;
   
@@ -195,6 +197,3 @@ const typeDefs = `
   
 
 
-
-
-  
