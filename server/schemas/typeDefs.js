@@ -48,6 +48,13 @@ const typeDefs = `
     userId: ID
   }
 
+  input CommentInput {
+    userId: ID
+    username: String
+    commentText: String
+    postId: ID
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -180,7 +187,7 @@ const typeDefs = `
     addUser(input: UserInput): Auth
     login(email: String!, password: String!): Auth
     addPost(postInput: PostInput!): Post
-    addComment(postId: ID!, commentText: String!): Post
+    addComment(commentInput: CommentInput!): Post
     removePost(postId: ID!): Post
     removeComment(postId: ID!, commentId: ID!): Post
     addFriend(friendId: ID!): Friend
