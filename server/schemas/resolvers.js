@@ -13,6 +13,7 @@ const resolvers = {
         .populate('posts')
         .populate('friends')
         .populate('workouts')
+        .populate('favoriteExercises')
         .populate('programs');
     },
     getAllPostsOfUser: async (parent, { _id }) => {
@@ -335,28 +336,28 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    
+    favoriteExercise: async (parent, { exerciseInput }, context) => {
+      try {
+        const newFavoriteExercise = await Exercise.create(exerciseInput.exercise)
 
-    favoriteExercise: async (parent, { exerciseId }, context) => {
-      if (context.user) {
-        // Find the authenticated user
-        const user = await User.findById(context.user._id);
-  
-        // Check if the exercise is not already in favorites
-        if (!user.favorites.includes(exerciseId)) {
-          // Add the exercise to favorites
-          user.favorites.push(exerciseId);
-  
-          // Save the updated user
-          await user.save();
-        }
-  
-        // Return the updated user with favorites
-        return user;
+          const user = await User.findOneAndUpdate(
+            { _id: exerciseInput.userId },
+            { $addToSet: { favoriteExercises: newFavoriteExercise._id }},
+            { new: true } // Return the updated user
+          ).populate('favoriteExercises');
+    
+          console.log(user);
+    
+          return user;
+        
+      } catch (error) {
+        console.error('Error favoriting exercise:', error);
+        throw new Error('Failed to favorite exercise');
       }
-  
-      // Throw an error if not authenticated
-      throw new AuthenticationError('User not authenticated');
     },
+    
+    
     // removeFriend: async (parent, { friendId }, context) => {
     //   if (context.user) {
     //     try {
