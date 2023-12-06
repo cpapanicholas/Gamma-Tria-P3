@@ -25,6 +25,7 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
         
 export const QUERY_POSTS = gql`
   query getAllPostsOfUser($_id: ID!) {
@@ -59,6 +60,7 @@ export const QUERY_SINGLE_POST = gql`
     }
   }
 `;
+
 
 export const QUERY_ORIGINAL_WORKOUT = gql`
 query getWorkoutsByOriginalId($originalId: ID!) {
