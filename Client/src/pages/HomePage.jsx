@@ -18,7 +18,6 @@ export default function HomePage() {
     variables: { originalId: "" },
   }); 
   console.log(data);
-  console.error(error)
   return (
     <>
       <Header showMenu={showMenu} setShowMenu={setShowMenu}/>

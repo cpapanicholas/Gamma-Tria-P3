@@ -28,7 +28,7 @@ export default function Login(props) {
     console.log({...formState});
     try {
       const { data } = await login({
-        variables: { ...formState },
+        variables: formState,
       });
       console.log(data.login);
       setCurrentUser(data.login)

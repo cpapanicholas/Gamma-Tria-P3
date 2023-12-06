@@ -7,15 +7,21 @@ import Auth from '../../utils/auth';
 import { useQuery } from '@apollo/client';
 import { QUERY_WORKOUTS_BY_USER } from '../../utils/queries';
 import placeholderGif from '../assets/squat-weight-lifting.gif';
+import { useMutation } from '@apollo/client';
+import { ADD_POST } from '../../utils/mutations';
 
 export default function CreatePost() {
   const [showMenu, setShowMenu] = useState(false);
   const [uploadedMediaUrl, setUploadedMediaUrl] = useState(placeholderGif);
   const [caption, setCaption] = useState('');
-  const [selectedWorkout, setSelectedWorkout] = useState(''); // Ensure it is defined
-  
-  const { workoutId } = useParams();
-  const userInfo = Auth.getProfile();
+  const [selectedWorkout, setSelectedWorkout] = useState('');
+  const [visibility, setVisibility] = useState(true);
+  const [workoutName, setWorkoutName] = useState('');
+
+  const profFromLocal = Auth.getProfile();
+  const userInfo = profFromLocal.data;
+
+  const [addPost, { error, data }] = useMutation(ADD_POST);
 
   const { loading: loadingFirst, data: dataFirst } = useQuery(QUERY_WORKOUTS_BY_USER, {
     variables: { userId: `${userInfo}` },
@@ -25,30 +31,56 @@ export default function CreatePost() {
     setUploadedMediaUrl(url);
   };
 
-  const handleFilterChange = (newFilter) => {
+  const handleFilterChange = async (newFilter) => {
+    const selectedWorkoutObject = dataFirst.getWorkoutsByUserId.find((workout) => workout._id === newFilter);
+    const { name: updatedWorkoutName } = selectedWorkoutObject || {};
+    console.log('Updated Workout Name:', updatedWorkoutName);
+
+    // Update state
+    setWorkoutName(updatedWorkoutName);
     setSelectedWorkout(newFilter);
   };
 
-  const handleSubmit = () => {
-    // Ensure that selectedWorkout is defined here
+  const handleCheckboxChange = () => {
+    setVisibility((prevState) => !prevState);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Wait for the state to be updated
+    await handleFilterChange(selectedWorkout);
+
+    // Now, selectedWorkout and workoutName should be updated
     console.log('Selected Workout:', selectedWorkout);
+    console.log('Workout Name:', workoutName);
 
     // Prepare the data to be submitted
-    const postData = {
+    const postInput = {
       mediaUrl: uploadedMediaUrl,
-      caption: caption,
+      postText: caption,
       workoutId: selectedWorkout,
+      workoutName: workoutName,
+      visibility,
       userId: userInfo._id,
+      username: userInfo.username
     };
+    console.log("postInput:" + postInput)
+    try {
+      const { data } = await addPost({
+        variables: {postInput: postInput}
+      });
+      console.log("Submitted post data:", data);
+    } catch (e) {
+      console.error(e);
+      console.error("Mutation error:", error.message);
+    }
 
-    // Submit the data to your backend or handle it as needed
-    console.log('Submitted data:', postData);
-    console.log(userInfo)
-
-    // Optionally, you can reset the form fields after submission
+    // Reset state after submission
     setUploadedMediaUrl(placeholderGif);
     setCaption('');
     setSelectedWorkout('');
+    setVisibility(true);
   };
 
   return (
@@ -77,6 +109,18 @@ export default function CreatePost() {
                 </option>
               ))}
             </select>
+          </div>
+          <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="publicCheckbox"
+              checked={visibility}
+              onChange={handleCheckboxChange}
+            />
+            <label className="form-check-label" htmlFor="publicCheckbox">
+              Public
+            </label>
           </div>
           <FileUpload onMediaUpload={handleMediaUpload} />
           <button onClick={handleSubmit}>Submit Post</button>

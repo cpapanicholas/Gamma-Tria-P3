@@ -29,16 +29,20 @@ const typeDefs = `
   type Post {
     _id: ID
     postText: String
-    mediaURL: String
-    postAuthor: String
+    mediaUrl: String
+    userId: ID!
+    username: String
+    visibility: Boolean
     createdAt: String
+    workoutId: ID
+    workoutName: String
     comments: [Comment]
   }
 
   type Comment {
     _id: ID
     commentText: String
-    commentAuthor: String
+    username: String
     createdAt: String
   }
 
@@ -158,12 +162,22 @@ const typeDefs = `
     workout: [WorkoutPhaseInput!]!
   }
 
+  input PostInput {
+    mediaUrl: String
+    postText: String
+    workoutId: ID
+    workoutName: String
+    visibility: Boolean
+    userId: ID!
+    username: String!
+  }
+
   type Mutation {
     updateWorkout(workoutId: ID!, updatedWorkout: WorkoutInput!): Workout
     createWorkout(workoutInput: CreateWorkoutInput!): Workout
     addUser(input: UserInput): Auth
     login(email: String!, password: String!): Auth
-    addPost(postText: String!): Post
+    addPost(postInput: PostInput!): Post
     addComment(postId: ID!, commentText: String!): Post
     removePost(postId: ID!): Post
     removeComment(postId: ID!, commentId: ID!): Post

@@ -36,17 +36,11 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost($postText: String!) {
-    addPost(postText: $postText) {
+  mutation Mutation($postInput: PostInput!) {
+    addPost(postInput: $postInput) {
       _id
-      postText
-      postAuthor
-      mediaURL
-      createdAt
-      comments {
-        _id
-        commentText
-      }
+      userId
+      mediaUrl
     }
   }
 `;
