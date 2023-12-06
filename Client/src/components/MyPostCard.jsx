@@ -39,18 +39,6 @@ export default function MyPostCard({ post }) {
 
   return (
     <Card style={{ width: '100%' }}>
-    <Card.Body>
-      <Card.Title><h2>{post.username}</h2></Card.Title>
-      {post.workoutId ? <Link to={`/workout/${post.workoutId}`}>{post.workoutName}</Link> : ''}
-      {post.mediaUrl ? <Card.Img variant="top" src={post.mediaUrl} /> : ''}
-      <Card.Text>
-        {post.postText}
-      </Card.Text>
-    </Card.Body>
-    <div>
-      <h5>Comments</h5>
-      {post.comments ? post.comments.map((comment, index) => (
-
       <Card.Body>
         <Card.Title>
           <h2>{post.username}</h2>
@@ -66,7 +54,6 @@ export default function MyPostCard({ post }) {
       <div>
         <h5>Comments</h5>
         {post.comments ? post.comments.map((comment, index) => (
-
           <div key={index}>
             <p>{comment.commentText}</p>
             <p>{comment.username}</p>
@@ -74,10 +61,6 @@ export default function MyPostCard({ post }) {
             <p>{comment.userId}</p>
           </div>
         )) : ' '}
-
-    </div>
-  </Card>
-
         <form onSubmit={handleCommentSubmit}>
           <input
             type="text"
