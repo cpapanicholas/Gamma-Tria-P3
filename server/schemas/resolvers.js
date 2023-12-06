@@ -155,7 +155,27 @@ const resolvers = {
     },
   },
 
+
+
   Mutation: {
+    changeUserStatus: async (parent, { statusChangeInput }) => {
+      console.log('clicked');
+      const user = await User.findOneAndUpdate(
+        { _id: statusChangeInput.userId },
+        {
+          $set: {
+            status: {
+              statusName: statusChangeInput.statusName,
+              state: statusChangeInput.state,
+            },
+          },
+          $addToSet: { daysCheckedIn: Date.now() },
+        },
+        { new: true } // Return the updated user, if needed
+      );
+    
+      return user;
+    },    
     addUser: async (parent,  {input} ) => {
       console.log(input);
       try {

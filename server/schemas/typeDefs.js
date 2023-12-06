@@ -6,11 +6,27 @@ const typeDefs = `
     username: String!
     email: String!
     password: String!
+    status: Status
     posts: [Post]
     friends: [Friend]
     workouts: [Workout]
     programs: [Program]
     favorites: [Exercise]
+    daysCheckedIn: [String]
+  }
+
+  type Status {
+    statusName: Text
+    state: Boolean
+    checkInTime: String
+  }
+
+  type Text {
+    text: String
+  }
+
+  input TextInput {
+    text: String
   }
 
   input UserInput {
@@ -132,6 +148,12 @@ const typeDefs = `
     workouts: [ProgramWorkoutInput]
   }
 
+  input StatusChangeInput {
+    userId: ID
+    statusName: TextInput
+    state: Boolean
+  }
+
   input ProgramWorkoutInput {
     day: String!
     workout: ID!
@@ -193,6 +215,7 @@ const typeDefs = `
     addFriend(friendId: ID!): Friend
     createProgram(programInput: ProgramInput!): Program
     favoriteExercise(exerciseId: ID!): User
+    changeUserStatus(statusChangeInput: StatusChangeInput!): User
   }
 
   type Query {
