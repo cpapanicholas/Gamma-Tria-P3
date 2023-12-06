@@ -11,15 +11,11 @@ const typeDefs = `
     friends: [Friend]
     workouts: [Workout]
     programs: [Program]
-    favorites: [Exercise]
+    favoriteExercises: [Exercise]
     daysCheckedIn: [String]
   }
 
-  type Status {
-    statusName: Text
-    state: Boolean
-    checkInTime: String
-  }
+  
 
   type Text {
     text: String
@@ -116,6 +112,7 @@ const typeDefs = `
   }
   
   type Exercise {
+    _id: ID!
     name: String!
     type: String!
     muscle: String!
@@ -124,6 +121,32 @@ const typeDefs = `
     instructions: String!
   }
   
+  input ExerciseInfoInput {
+    name: String!
+    type: String!
+    muscle: String!
+    equipment: String!
+    difficulty: String!
+    instructions: String!
+  }
+
+  input ExerciseInput {
+    exercise: ExerciseInfoInput
+    userId: ID
+  }
+
+  type Status {
+    statusName: Text
+    state: Boolean
+    checkInTime: String
+  }
+
+  input StatusChangeInput {
+    userId: ID
+    statusName: TextInput
+    state: Boolean
+  }
+
   type ExerciseSet {
     reps: Int!
     weight: Int!
@@ -148,12 +171,6 @@ const typeDefs = `
     workouts: [ProgramWorkoutInput]
   }
 
-  input StatusChangeInput {
-    userId: ID
-    statusName: TextInput
-    state: Boolean
-  }
-
   input ProgramWorkoutInput {
     day: String!
     workout: ID!
@@ -167,15 +184,6 @@ const typeDefs = `
   input WorkoutExerciseInput {
     exercise: ExerciseInput!
     sets: [ExerciseSetInput!]!
-  }
-  
-  input ExerciseInput {
-    name: String!
-    type: String!
-    muscle: String!
-    equipment: String!
-    difficulty: String!
-    instructions: String!
   }
   
   input ExerciseSetInput {
@@ -214,7 +222,7 @@ const typeDefs = `
     removeComment(postId: ID!, commentId: ID!): Post
     addFriend(friendId: ID!): Friend
     createProgram(programInput: ProgramInput!): Program
-    favoriteExercise(exerciseId: ID!): User
+    favoriteExercise(exerciseInput: ExerciseInput!): User
     changeUserStatus(statusChangeInput: StatusChangeInput!): User
   }
 

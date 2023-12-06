@@ -78,6 +78,12 @@ const userSchema = new Schema({
         {
             type: String,
         }
+    ],
+    favoriteExercises: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Exercise'
+        }
     ]
 });
 

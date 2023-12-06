@@ -1,9 +1,9 @@
-// ExerciseList.js
-
 import React, { useEffect, useState } from 'react';
 import { fetchExercises } from '../../../server/utils/api'; // Adjust the path
 import { useMutation } from '@apollo/client';
+import Auth from '../../utils/auth';
 import { FAVORITE_EXERCISE } from '../../utils/mutations';
+
 const muscleGroups = [
   'abdominals',
   'abductors',
@@ -20,19 +20,24 @@ const muscleGroups = [
   'neck',
   'quadriceps',
   'traps',
-  "triceps",]
+  "triceps",
+]
+
 const ExerciseList = () => {
+  const userInfo = Auth.getProfile();
+  console.log(userInfo);
+
   const [selectedMuscleGroup, setSelectedMuscleGroup] = useState('');
   const [exercises, setExercises] = useState([]);
 
   const onSelectMuscleGroup = async (selectedMuscleGroup) => {
-    console.log(selectedMuscleGroup);
+    // console.log(selectedMuscleGroup);
 
 
 
     try {
       const response = await fetchExercises(selectedMuscleGroup);
-      console.log(response);
+      // console.log(response);
       // const filteredExercises = response.data.filter(
       //   (exercise) => exercise.muscle === selectedMuscleGroup
       // );
@@ -50,12 +55,18 @@ const ExerciseList = () => {
 
   const [favoriteExercise] = useMutation(FAVORITE_EXERCISE);
 
-  const handleFavoriteClick = async (exerciseId) => {
+  const handleFavoriteClick = async (exercise) => {
+    console.log(exercise);
     try {
       await favoriteExercise({
-        variables: { exerciseId },
+        variables: { 
+          exerciseInput: {
+            exercise, 
+            userId: userInfo.data._id
+          }
+        },
       });
-      console.log(`Exercise ${exerciseId} favorited!`);
+      console.log(`Exercise ${exercise.name} favorited!`);
     } catch (error) {
       console.error('Error favoriting exercise:', error.message);
     }
@@ -82,7 +93,7 @@ const ExerciseList = () => {
             {exercises.map((exercise, index) => (
               <li key={index}>
                 <strong>{exercise.name}</strong> - 
-                <button onClick={() => handleFavoriteClick(exercise.id)}>Favorite</button><br />
+                <button onClick={() => handleFavoriteClick(exercise)}>Favorite</button><br />
                 <p1>{exercise.type}</p1><br />
                 <p>{exercise.equipment}</p><br />
                 <p>{exercise.difficulty}</p><br />
