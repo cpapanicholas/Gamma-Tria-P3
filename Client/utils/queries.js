@@ -93,7 +93,10 @@ query {
   getAllExercises {
     id
     name
-    description
+    type
+    equipment
+    difficulty
+    instructions
   }
 }
 `;
