@@ -1,6 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserProvider from '../utils/UserContext';
+import Calendar from 'react-calendar';
 
 import {
   ApolloClient,
@@ -16,6 +17,9 @@ import FileUpload from './pages/Upload';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
+
+
+
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {

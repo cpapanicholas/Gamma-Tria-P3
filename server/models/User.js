@@ -1,5 +1,3 @@
-//posts, saved workouts, friends, 
-
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
@@ -36,13 +34,19 @@ const userSchema = new Schema({
         minlength: 5,
     },
     status: {
-        type: {
-            text: String,
-            timestamp: Date,
+        statusName: {
+            text: {
+              type: String,
+              default: 'not at gym',
+            },
         },
-        default: {
-            text: 'not at gym',
-            timestamp: null,
+        state: {
+            type: Boolean,
+            default: false
+        }, 
+        checkInTime: {
+            type: Date,
+            default: Date.now
         },
     },
     posts: [
@@ -68,6 +72,11 @@ const userSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Program'
+        }
+    ],
+    daysCheckedIn: [
+        {
+            type: String,
         }
     ]
 });

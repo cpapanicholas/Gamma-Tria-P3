@@ -16,14 +16,14 @@ export default function MyPostCard ({ post }) {
     </Card.Body>
     <div>
       <h5>Comments</h5>
-        {post.comments.map((comment) => {
-        <div>
-          <p>{comment.commentText}</p>
-          <p>{comment.username}</p>
-          <p>{comment.createdAt}</p>
-          <p>{comment.userId}</p>
-        </div>
-        })}
+      {post.comments ? post.comments.map((comment, index) => (
+          <div key={index}>
+            <p>{comment.commentText}</p>
+            <p>{comment.username}</p>
+            <p>{comment.createdAt}</p>
+            <p>{comment.userId}</p>
+          </div>
+        )) : ' '}
     </div>
   </Card>
   );

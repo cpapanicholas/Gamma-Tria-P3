@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMessage, faBars, faDumbbell } from "@fortawesome/free-solid-svg-icons"
+import { faMessage, faBars, faDumbbell, faCheck } from "@fortawesome/free-solid-svg-icons"
 import { useState } from 'react';
 // import Auth from '../../utils/auth';
 // import Searchbar from './Searchbar';
@@ -26,6 +25,9 @@ export default function Header ({ showMenu, setShowMenu}) {
         <NavDropdown.Item >Feed 3</NavDropdown.Item>
       </NavDropdown>
       <div className='d-flex'>
+      <Nav.Item className='p-1'>
+            <FontAwesomeIcon icon={faCheck} style={{color: "#ffffff",}} className='message-icon pe-2'/>
+        </Nav.Item>
       <Nav.Item className='p-1'>
           <Link to={'/myPrograms'}>
             <FontAwesomeIcon icon={faDumbbell} style={{color: "#ffffff",}} className='message-icon pe-2'/>

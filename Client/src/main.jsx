@@ -11,7 +11,8 @@ import Signup from './pages/signup.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import Library  from './pages/LibraryPage.jsx';
-import CreatePost from './pages/createPost.jsx';
+import CreatePost from './pages/CreatePost.jsx';
+import Calendar from './pages/Calendar.jsx';
 // import DirectMessagePage  from './pages/DirectMessagePage.jsx';
 
 // dotenv.config();
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       }, {
         path: '/create',
         element: <CreatePost />
+      },
+      {
+        path: '/Calendar',
+        element: <Calendar />
       }, {
         path: '/workout/:workoutId',
         element: <WorkoutPage />
