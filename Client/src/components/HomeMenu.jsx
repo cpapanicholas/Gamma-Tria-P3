@@ -10,7 +10,7 @@ export default function Homemenu () {
         <button className="menu-option bg-dark">Leaderboard NEEDS PAGE</button>
         <button className="menu-option bg-dark">Stats NEEDS PAGE</button>
         <button className="menu-option bg-dark">Progress NEEDS PAGE</button>
-        <button className="menu-option bg-dark">Friends NEEDS PAGE</button>
+        <Link to={'/Friends'} className="menu-option bg-dark">Friends</Link>
         <Link to={'/exercisePage'} className="menu-option bg-dark">Exercises</Link>
     </div>
   );
