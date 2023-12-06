@@ -25,6 +25,40 @@ export const QUERY_USER = gql`
     }
   }
 `;
+        
+export const QUERY_POSTS = gql`
+  query getAllPostsOfUser($_id: ID!) {
+    getAllPostsOfUser(_id: $_id) {
+      _id
+      postText
+      postAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
+export const QUERY_SINGLE_POST = gql`
+  query getSinglePost($_id: ID!) {
+    getSinglePost(_id: $_id) {
+      _id
+      postText
+      postAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
 
 export const QUERY_ORIGINAL_WORKOUT = gql`
 query getWorkoutsByOriginalId($originalId: ID!) {
