@@ -11,9 +11,11 @@ import Signup from './pages/signup.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import Library  from './pages/LibraryPage.jsx';
-import CreatePost from './pages/createPost.jsx';
 import FriendsList  from './pages/friendsPage';
 import ViewFriend  from './pages/FriendProfilePage.jsx';
+// import Chatroom from './pages/Chatbox.jsx'
+import ExercisePage from './pages/ExercisePage';
+import CreatePost from './pages/CreatePost.jsx';
 
 // dotenv.config();
 
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       }, {
         path: '/workout/:workoutId',
         element: <WorkoutPage />
+      }, 
+      // {
+      //   path: '/chatroom',
+      //   element: <Chatroom />
+      // }, 
+      {
+        path: '/exercisePage',
+        element: <ExercisePage/>
       }, 
       // {
       //   path: '/program/:programId',

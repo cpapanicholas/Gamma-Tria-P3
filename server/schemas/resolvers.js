@@ -21,6 +21,16 @@ const resolvers = {
         .sort({ createdAt: -1 })
         .populate('comments');
     },
+    getAllPosts: async () => {
+      try {
+        const posts = await Post.find().sort({ createdAt: -1 }).populate('comments');
+        return posts;
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        // You can handle the error further, throw it, or return a default value
+        throw error;
+      }
+    },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id })
@@ -145,7 +155,27 @@ const resolvers = {
     },
   },
 
+
+
   Mutation: {
+    changeUserStatus: async (parent, { statusChangeInput }) => {
+      console.log('clicked');
+      const user = await User.findOneAndUpdate(
+        { _id: statusChangeInput.userId },
+        {
+          $set: {
+            status: {
+              statusName: statusChangeInput.statusName,
+              state: statusChangeInput.state,
+            },
+          },
+          $addToSet: { daysCheckedIn: Date.now() },
+        },
+        { new: true } // Return the updated user, if needed
+      );
+    
+      return user;
+    },    
     addUser: async (parent,  {input} ) => {
       console.log(input);
       try {
@@ -214,13 +244,15 @@ const resolvers = {
         throw new Error('Failed to create post');
       }
     },
-    addComment: async (parent, { postId, commentText }, context) => {
-      if (context.user) {
-        return Post.findOneAndUpdate(
-          { _id: postId },
+    addComment: async (parent, { postId, commentInput }, context) => {
+      console.log('Comment sent');
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const post = await Post.findOneAndUpdate(
+          { _id: commentInput.postId },
           {
             $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
+              comments: commentInput
             },
           },
           {
@@ -228,8 +260,12 @@ const resolvers = {
             runValidators: true,
           }
         );
+    
+        return post;
+      } catch (error) {
+        console.error('Error adding comment:', error.message);
+        throw new Error('Failed to add comment');
       }
-      throw AuthenticationError;
     },
     removePost: async (parent, { postId }, context) => {
       if (context.user) {

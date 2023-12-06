@@ -6,11 +6,27 @@ const typeDefs = `
     username: String!
     email: String!
     password: String!
+    status: Status
     posts: [Post]
     friends: [Friend]
     workouts: [Workout]
     programs: [Program]
     favorites: [Exercise]
+    daysCheckedIn: [String]
+  }
+
+  type Status {
+    statusName: Text
+    state: Boolean
+    checkInTime: String
+  }
+
+  type Text {
+    text: String
+  }
+
+  input TextInput {
+    text: String
   }
 
   input UserInput {
@@ -31,7 +47,7 @@ const typeDefs = `
     _id: ID
     postText: String
     mediaUrl: String
-    userId: ID!
+    userId: ID
     username: String
     visibility: Boolean
     createdAt: String
@@ -42,9 +58,17 @@ const typeDefs = `
 
   type Comment {
     _id: ID
-    commentText: String
     username: String
+    commentText: String
     createdAt: String
+    userId: ID
+  }
+
+  input CommentInput {
+    userId: ID
+    username: String
+    commentText: String
+    postId: ID
   }
 
   type Auth {
@@ -124,6 +148,12 @@ const typeDefs = `
     workouts: [ProgramWorkoutInput]
   }
 
+  input StatusChangeInput {
+    userId: ID
+    statusName: TextInput
+    state: Boolean
+  }
+
   input ProgramWorkoutInput {
     day: String!
     workout: ID!
@@ -179,12 +209,13 @@ const typeDefs = `
     addUser(input: UserInput): Auth
     login(email: String!, password: String!): Auth
     addPost(postInput: PostInput!): Post
-    addComment(postId: ID!, commentText: String!): Post
+    addComment(commentInput: CommentInput!): Post
     removePost(postId: ID!): Post
     removeComment(postId: ID!, commentId: ID!): Post
     addFriend(friendId: ID!): Friend
     createProgram(programInput: ProgramInput!): Program
     favoriteExercise(exerciseId: ID!): User
+    changeUserStatus(statusChangeInput: StatusChangeInput!): User
   }
 
   type Query {
@@ -192,6 +223,7 @@ const typeDefs = `
     getUserWithWorkoutInfo(_id: ID!): User
     getUser(_id: ID!): User
     getAllPostsOfUser(_id: ID!): [Post]
+    getAllPosts: [Post]
     me: User
     getAllPublicPrograms(originalId: String): [Program]
     getAllPublicWorkouts(originalId: String): [Workout]
