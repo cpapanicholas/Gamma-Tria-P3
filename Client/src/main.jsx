@@ -11,10 +11,11 @@ import Signup from './pages/signup.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import Library  from './pages/LibraryPage.jsx';
+import FriendsList  from './pages/friendsPage';
+import ViewFriend  from './pages/FriendProfilePage.jsx';
 // import Chatroom from './pages/Chatbox.jsx'
 import ExercisePage from './pages/ExercisePage';
 import CreatePost from './pages/CreatePost.jsx';
-
 
 // dotenv.config();
 
@@ -67,11 +68,14 @@ const router = createBrowserRouter([
       //   path: '/program/:programId',
       //   element: <ProgramPage />
       // },
-      // {
-      //   path: '/DirectMessagePage',
-      //   element: <DirectMessagePage />
-      // },
-      
+      {
+        path: '/Friends',
+        element: < FriendsList/>
+      },
+      {
+        path: '/Friends/:friendId',
+        element: < ViewFriend/>
+      },
       
     ]
   },
