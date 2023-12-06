@@ -98,3 +98,56 @@ export const REMOVE_COMMENT = gql`
     }
   }
 `;
+
+export const UPDATE_WORKOUT = gql`
+  mutation UpdateWorkout($workoutId: ID!, $updatedWorkout: WorkoutInput!) {
+    updateWorkout(workoutId: $workoutId, updatedWorkout: $updatedWorkout) {
+      _id
+      name
+      workout {
+        phase
+        exercises {
+          exercise {
+            name
+            type
+            muscle
+            equipment
+            difficulty
+            instructions
+          }
+          sets {
+            reps
+            weight
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const CREATE_WORKOUT = gql`
+  mutation CreateWorkout($workoutInput: CreateWorkoutInput!) {
+    createWorkout(workoutInput: $workoutInput) {
+      _id
+      name
+      description
+      workout {
+        phase
+        exercises {
+          exercise {
+            name
+            type
+            muscle
+            equipment
+            difficulty
+            instructions
+          }
+          sets {
+            reps
+            weight
+          }
+        }
+      }
+    }
+  }
+`;
