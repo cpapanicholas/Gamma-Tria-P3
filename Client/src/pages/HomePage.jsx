@@ -17,8 +17,8 @@ export default function HomePage() {
   const { loading, error, data } = useQuery(QUERY_PUBLIC_WORKOUTS, {
     variables: { originalId: "" },
   }); 
-  console.log(data);
-  console.error(error)
+  // console.log(data);
+  // console.error(error)
   return (
     <>
       <Header showMenu={showMenu} setShowMenu={setShowMenu}/>

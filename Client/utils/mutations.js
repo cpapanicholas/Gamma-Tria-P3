@@ -4,29 +4,11 @@ export const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
-      token
       user {
         _id
         firstName
         lastName
-        _id
-        firstName
-        lastName
         username
-        email
-        posts {
-          _id
-        }
-        friends {
-          _id
-        }
-        workouts {
-          _id
-        }
-        programs {
-          _id
-        }
-      }
         email
         posts {
           _id
@@ -53,12 +35,14 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+export const ADD_POST = gql`
+  mutation addPost($postText: String!, $mediaUrl: String!, $visibility: Boolean, $workoutId: String,  ) {
+    addPost(postText: $postText, mediaUrl: $mediaUrl, visibility: $visibility, workoutId: $workoutId) {
       _id
-      thoughtText
-      thoughtAuthor
+      postText
+      postAuthor
+      mediaUrl
+      visibility
       createdAt
       comments {
         _id
@@ -84,6 +68,58 @@ export const ADD_COMMENT = gql`
   }
 `;
 
+export const UPDATE_WORKOUT = gql`
+  mutation UpdateWorkout($workoutId: ID!, $updatedWorkout: WorkoutInput!) {
+    updateWorkout(workoutId: $workoutId, updatedWorkout: $updatedWorkout) {
+      _id
+      name
+      workout {
+        phase
+        exercises {
+          exercise {
+            name
+            type
+            muscle
+            equipment
+            difficulty
+            instructions
+          }
+          sets {
+            reps
+            weight
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const CREATE_WORKOUT = gql`
+  mutation CreateWorkout($workoutInput: CreateWorkoutInput!) {
+    createWorkout(workoutInput: $workoutInput) {
+      _id
+      name
+      description
+      workout {
+        phase
+        exercises {
+          exercise {
+            name
+            type
+            muscle
+            equipment
+            difficulty
+            instructions
+          }
+          sets {
+            reps
+            weight
+          }
+        }
+      }
+    }
+  }
+`;
 export const FAVORITE_EXERCISE = gql`
   mutation favoriteExercise($exerciseId: ID!) {
     favoriteExercise(exerciseId: $exerciseId) {

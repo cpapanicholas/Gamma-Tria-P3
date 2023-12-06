@@ -25,36 +25,6 @@ export const QUERY_USER = gql`
     }
   }
 `;
-        
-export const QUERY_POSTS = gql`
-  query getAllPostsOfUser($_id: ID!) {
-    getAllPostsOfUser(_id: $_id) {
-      _id
-      postText
-      postAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
-    }
-  }
-`;
-
-export const QUERY_SINGLE_POST = gql`
-  query getSinglePost($_id: ID!) {
-    getSinglePost(_id: $_id) {
-      _id
-      postText
-      postAuthor
-      createdAt
-      comments {
-      }
-    }
-  }
-`;
 
 export const QUERY_ORIGINAL_WORKOUT = gql`
 query getWorkoutsByOriginalId($originalId: ID!) {
@@ -87,33 +57,6 @@ export const QUERY_GET_ALL_PROGRAMS = gql`
     }
   }
 `;
-
-export const GET_ALL_EXERCISES = gql`
-query {
-  getAllExercises {
-    id
-    name
-    type
-    equipment
-    difficulty
-    instructions
-  }
-}
-`;
- 
-// export const FETCH_EXERCISES = gql`
-//   query {
-//     exercises {
-//       name
-//       type
-//       muscle
-//       equipment
-//       difficulty
-//       instructions
-//     }
-//   }
-// `;
-
 
 export const QUERY_USER_WITH_WORKOUT_INFO = gql`
   query GetUserWithWorkoutInfo($id: ID!) {
@@ -168,7 +111,14 @@ query GetAllPublicPrograms($originalId: String) {
   }
 }
 `;
-
+export const QUERY_WORKOUTS_BY_USER = gql`
+  query ExampleQuery($userId: ID!) {
+    getWorkoutsByUserId(userId: $userId) {
+      _id
+      name
+    }
+  }
+`;
 export const QUERY_WORKOUT_BY_ID = gql`
   query GetWorkoutById($id: ID!) {
     getWorkoutById(_id: $id) {
@@ -193,4 +143,3 @@ export const QUERY_WORKOUT_BY_ID = gql`
     }
   }
 `;
-

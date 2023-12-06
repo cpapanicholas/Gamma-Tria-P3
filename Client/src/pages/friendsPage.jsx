@@ -1,9 +1,9 @@
 // src/FriendsList.jsx
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_USER} from '../../../utils/queries';  // Import other queries as needed
-import { ADD_FRIEND } from '../../../utils/mutations';  // Import mutations as needed
-import { UPDATE_WORKOUT, CREATE_WORKOUT } from '../../../utils/mutations';  // Import additional mutations
+import { QUERY_USER} from '../../utils/queries';  // Import other queries as needed
+import { ADD_FRIEND } from '../../utils/mutations';  // Import mutations as needed
+import { UPDATE_WORKOUT, CREATE_WORKOUT } from '../../utils/mutations';  // Import additional mutations
 
 const FriendsList = () => {
   const [newFriendId, setNewFriendId] = useState('');
