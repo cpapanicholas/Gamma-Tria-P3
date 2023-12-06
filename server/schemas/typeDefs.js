@@ -31,7 +31,7 @@ const typeDefs = `
     _id: ID
     postText: String
     mediaUrl: String
-    userId: ID!
+    userId: ID
     username: String
     visibility: Boolean
     createdAt: String
@@ -42,9 +42,10 @@ const typeDefs = `
 
   type Comment {
     _id: ID
-    commentText: String
     username: String
+    commentText: String
     createdAt: String
+    userId: ID
   }
 
   type Auth {
@@ -192,6 +193,7 @@ const typeDefs = `
     getUserWithWorkoutInfo(_id: ID!): User
     getUser(_id: ID!): User
     getAllPostsOfUser(_id: ID!): [Post]
+    getAllPosts: [Post]
     me: User
     getAllPublicPrograms(originalId: String): [Program]
     getAllPublicWorkouts(originalId: String): [Workout]

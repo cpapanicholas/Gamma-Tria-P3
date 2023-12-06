@@ -44,6 +44,10 @@ const postSchema = new Schema({
                 type: Date,
                 default: Date.now
             },
+            userId: {
+                type: String,
+                
+            },
         },
     ],
 });

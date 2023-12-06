@@ -27,7 +27,7 @@ export const QUERY_USER = gql`
 `;
 
         
-export const QUERY_POSTS = gql`
+export const QUERY_POSTS_BY_USER_ID = gql`
   query getAllPostsOfUser($_id: ID!) {
     getAllPostsOfUser(_id: $_id) {
       _id
@@ -56,6 +56,29 @@ export const QUERY_SINGLE_POST = gql`
         commentText
         commentAuthor
         createdAt
+      }
+    }
+  }
+`;
+
+export const QUERY_ALL_POSTS = gql`
+  query GetAllPosts {
+    getAllPosts {
+      _id
+      postText
+      mediaUrl
+      userId
+      username
+      visibility
+      createdAt
+      workoutId
+      workoutName
+      comments {
+        _id
+        username
+        commentText
+        createdAt
+        userId
       }
     }
   }

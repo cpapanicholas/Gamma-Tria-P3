@@ -21,6 +21,16 @@ const resolvers = {
         .sort({ createdAt: -1 })
         .populate('comments');
     },
+    getAllPosts: async () => {
+      try {
+        const posts = await Post.find().sort({ createdAt: -1 }).populate('comments');
+        return posts;
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        // You can handle the error further, throw it, or return a default value
+        throw error;
+      }
+    },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id })
