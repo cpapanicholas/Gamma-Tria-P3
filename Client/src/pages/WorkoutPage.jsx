@@ -41,15 +41,13 @@ export default function WorkoutPage (props) {
 
   return (
     <div className='myPrograms-container'>
-      {/* {workout.workout.map((phase) => (
-
+      {workout.workout.map((phase) => (
         <ExerciseCardContainer key={phase.phase} exercise={phase} />
-        
       ))}
       <button
         className="btn btn-primary mx-4"
         onClick={handleCompleteWorkout}
-      >Complete Workout</button> */}
+      >Complete Workout</button>
       <Footer/>
     </div>
   );

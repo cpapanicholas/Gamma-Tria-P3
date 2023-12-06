@@ -18,7 +18,6 @@ import FriendsList  from './pages/friendsPage';
 import ViewFriend  from './pages/FriendProfilePage.jsx';
 // import Chatroom from './pages/Chatbox.jsx'
 import ExercisePage from './pages/ExercisePage';
-import CreatePost from './pages/CreatePost.jsx';
 
 
 // dotenv.config();
