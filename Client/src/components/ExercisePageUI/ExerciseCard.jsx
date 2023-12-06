@@ -1,21 +1,37 @@
+// exerciseCard.jsx
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 
-export default function ExerciseCard({ exercise, index, showSets }) {
+export default function ExerciseCard({ 
+    exercise,
+    phase, 
+    exerciseIndex, 
+    showSets, 
+    handleExerciseUpdate, 
+    sets, 
+    setSets,   
+  }) {
+
   const [weights, setWeights] = useState(Array(exercise.length).fill(''));
   const [completedSets, setCompletedSets] = useState([]);
   const [allSetsCompleted, setAllSetsCompleted] = useState(false);
-
+  
   const handleWeightChange = (setIndex, value) => {
+    console.log(value);
     const newWeights = [...weights];
     newWeights[setIndex] = value;
     setWeights(newWeights);
-    exercise.sets[setIndex].weight = value
-    console.log(exercise);
-  };
 
-  const handleSetComplete = (setIndex) => {
+    const newSets = [...sets]
+    // newSets[setIndex] = {
+    //   completed: newSets[setIndex].completed,
+    //   reps: newSets[setIndex].reps,
+    //   weight: value,
+    // }
+  }
+
+  const handleSetComplete = async (setIndex) => {
     setCompletedSets((prevCompletedSets) => {
       if (prevCompletedSets.includes(setIndex)) {
         // Set is already completed, so remove it
@@ -25,21 +41,36 @@ export default function ExerciseCard({ exercise, index, showSets }) {
         return [...prevCompletedSets, setIndex];
       }
     });
+
+    // const newSets = [...sets];
+    // newSets[setIndex] = {
+    //   completed: !newSets[setIndex].completed,
+    //   reps: newSets[setIndex].reps,
+    //   weight: newSets[setIndex].weight,
+    // };
+
+    // setSets(newSets);
+    // exercise.sets = newSets;
   };
 
   useEffect(() => {
-    if (completedSets.length === exercise.sets) {
+    if (completedSets.length === exercise.sets.length) {
       return setAllSetsCompleted(true)
-    } else if (completedSets.length != exercise.sets) {
+    } else if (completedSets.length != exercise.sets.length) {
       return setAllSetsCompleted(false)
     }
   }, [completedSets]);
 
+  // useEffect(() => {
+  //   // Notify the parent component of the updates
+  //   return onUpdate({ weights, completedSets, allSetsCompleted });
+  // }, [completedSets, weights]);
+
   return (
     <>
-        <div key={index} className="exercise">
+        <div key={exerciseIndex} className="exercise">
           <div className='exercise-card-title'>
-            <p>{exercise.exercise.name}</p>
+            <p>{phase + ')'}{exercise.exercise.name}</p>
           </div>
           {showSets && (
             <div className="exercise-table">
@@ -55,7 +86,7 @@ export default function ExerciseCard({ exercise, index, showSets }) {
                 </div>
               </div>
                 {Array.from({ length: exercise.sets.length }, (_, setIndex) => (
-              <div className="table-row">
+              <div className="table-row" key={setIndex}>
                   <React.Fragment key={setIndex}>
                     <div className="table-column-sets">{setIndex + 1}</div>
                     <div className="table-column-reps">{exercise.sets[setIndex].reps}</div>
