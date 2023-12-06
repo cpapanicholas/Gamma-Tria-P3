@@ -7,7 +7,7 @@ import Home from './pages/HomePage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import MyProfilePage from './pages/MyProfilePage.jsx';
 import Login from './pages/login.jsx'
-import Signup from './pages/signup.jsx'
+import Signup from './pages/Sign-up.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import Library  from './pages/LibraryPage.jsx';
