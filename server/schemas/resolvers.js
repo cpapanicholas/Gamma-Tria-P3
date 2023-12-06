@@ -155,7 +155,27 @@ const resolvers = {
     },
   },
 
+
+
   Mutation: {
+    changeUserStatus: async (parent, { statusChangeInput }) => {
+      console.log('clicked');
+      const user = await User.findOneAndUpdate(
+        { _id: statusChangeInput.userId },
+        {
+          $set: {
+            status: {
+              statusName: statusChangeInput.statusName,
+              state: statusChangeInput.state,
+            },
+          },
+          $addToSet: { daysCheckedIn: Date.now() },
+        },
+        { new: true } // Return the updated user, if needed
+      );
+    
+      return user;
+    },    
     addUser: async (parent,  {input} ) => {
       console.log(input);
       try {
@@ -224,13 +244,15 @@ const resolvers = {
         throw new Error('Failed to create post');
       }
     },
-    addComment: async (parent, { postId, commentText }, context) => {
-      if (context.user) {
-        return Post.findOneAndUpdate(
-          { _id: postId },
+    addComment: async (parent, { postId, commentInput }, context) => {
+      console.log('Comment sent');
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const post = await Post.findOneAndUpdate(
+          { _id: commentInput.postId },
           {
             $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
+              comments: commentInput
             },
           },
           {
@@ -238,8 +260,12 @@ const resolvers = {
             runValidators: true,
           }
         );
+    
+        return post;
+      } catch (error) {
+        console.error('Error adding comment:', error.message);
+        throw new Error('Failed to add comment');
       }
-      throw AuthenticationError;
     },
     removePost: async (parent, { postId }, context) => {
       if (context.user) {
@@ -296,19 +322,18 @@ const resolvers = {
     addFriend: async (parent, { friendId }, context) => {
       if (context.user) {
         const friend = await Friend.create({
-          userId: context.user._id,
-          friendId: friendId,
+          user1: context.user._id,
+          user2: friendId,
         });
-
+    
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { friends: friend._id } }
         );
-
+    
         return friend;
       }
-      throw AuthenticationError
-      ('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     },
 
     favoriteExercise: async (parent, { exerciseId }, context) => {

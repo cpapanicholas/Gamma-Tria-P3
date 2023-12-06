@@ -818,6 +818,20 @@ const programNames = [
   'Athletic Performance Boost',
   'Mindful Movement Program',
 ];
+const MediaUrl = [
+  'https://images.app.goo.gl/bVGsSemj8LAeJmwx5',
+  'https://images.app.goo.gl/CFav9ZARkz71meW77',
+  'https://images.app.goo.gl/heKRzsk49SkWNujX8',
+  'https://images.app.goo.gl/htcxpbsSUTTM2HL4A',
+  'https://images.app.goo.gl/TUCoRT8Srhmgybdf9',
+  'https://images.app.goo.gl/VaU93nMUMZWKBQCRA',
+  'https://images.app.goo.gl/rPoDWvMQoooZZoRL9',
+  'https://images.app.goo.gl/X2k8GB6bUYo3P4rL6',
+  'https://images.app.goo.gl/XhcdGRUYzEtNkRhS8',
+  'https://images.app.goo.gl/MhhS3bDyP77QuKTXA',
+  'https://images.app.goo.gl/BnigbjEcocUjJXSJ6',
+  'https://images.app.goo.gl/Yfux6rEW6DHNWsb46',
+]
 
 const programDescriptions = [
   'A comprehensive strength training program designed to push your limits and build ultimate strength in all major muscle groups.',

@@ -14,6 +14,12 @@ import Library  from './pages/LibraryPage.jsx';
 import CreatePost from './pages/CreatePost.jsx';
 import Calendar from './pages/Calendar.jsx';
 // import DirectMessagePage  from './pages/DirectMessagePage.jsx';
+import FriendsList  from './pages/friendsPage';
+import ViewFriend  from './pages/FriendProfilePage.jsx';
+// import Chatroom from './pages/Chatbox.jsx'
+import ExercisePage from './pages/ExercisePage';
+import CreatePost from './pages/CreatePost.jsx';
+
 
 // dotenv.config();
 
@@ -59,14 +65,25 @@ const router = createBrowserRouter([
         element: <WorkoutPage />
       }, 
       // {
+      //   path: '/chatroom',
+      //   element: <Chatroom />
+      // }, 
+      {
+        path: '/exercisePage',
+        element: <ExercisePage/>
+      }, 
+      // {
       //   path: '/program/:programId',
       //   element: <ProgramPage />
       // },
-      // {
-      //   path: '/DirectMessagePage',
-      //   element: <DirectMessagePage />
-      // },
-      
+      {
+        path: '/Friends',
+        element: < FriendsList/>
+      },
+      {
+        path: '/Friends/:friendId',
+        element: < ViewFriend/>
+      },
       
     ]
   },

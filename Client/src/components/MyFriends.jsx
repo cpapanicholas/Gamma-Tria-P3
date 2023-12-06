@@ -1,6 +1,6 @@
 import MyFriendCard from "./MyFriendCard";
 
-export default function MyFriends () {
+export default function MyFriends() {
   const friends = [
     { username: 'tommyBiceps22', status: 'At the gym' },
     { username: 'sallyIsStrongerThanYou', status: 'Away' },
@@ -18,9 +18,14 @@ export default function MyFriends () {
     { username: 'cardioKing', status: 'Cardio session' },
     { username: 'strongAndHealthy', status: 'Maintaining health' },
   ]
+
+  console.log(friends);
+
   return (
     <div className='bg-light friends-container'>
-      {friends.map((friend) => <MyFriendCard friend={friend}/>)}
+      {friends.map((friend, index) => (
+        <MyFriendCard key={index} friend={{ ...friend, _id: index + 1 }} />
+      ))}
     </div>
   );
 }
