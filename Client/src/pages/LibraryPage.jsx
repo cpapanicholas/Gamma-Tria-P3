@@ -6,8 +6,7 @@ import ProgramCard from '../components/ProgramCard';
 import WorkoutCard from '../components/WorkoutCard';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
-
-const SearchBar = () => {
+export default function LibraryPage () {
   // const workouts = []
   // const programs = []
   const [workouts, setWorkouts] = useState([])
@@ -24,12 +23,13 @@ const SearchBar = () => {
     console.log(workouts[0]);
   }
  
-  const { loading: loadingSecond, error: errorSecond, data: dataSecond } = useQuery(QUERY_PUBLIC_PROGRAMS); 
+  const { loading: loadingSecond, error: errorSecond, data: dataSecond } = useQuery(QUERY_PUBLIC_PROGRAMS, {
+    variables: { originalId: "" },}); 
   console.log(loadingSecond);
   console.log(dataSecond);
   console.error(errorSecond)
   if (dataSecond) {
-    programs.push(dataSecond.getAllPublicWorkouts)
+    programs.push(dataSecond.getAllPublicPrograms)
     console.log(dataSecond);
   }
 
@@ -98,11 +98,11 @@ const SearchBar = () => {
         </div>
       </div>
     </header>
-    {/* {programs[0] ? programs[0].map((program) => <ProgramCard program={program}/>) : ''} */}
+    {programs[0] ? programs[0].map((program) => <ProgramCard program={program}/>) : ''}
     {workouts[0] ? workouts[0].map((workout) => <WorkoutCard workout={workout}/>) : ''}
    
     </>
   );
 };
 
-export default SearchBar;
+
