@@ -8,24 +8,7 @@ export const LOGIN = gql`
         _id
         firstName
         lastName
-        _id
-        firstName
-        lastName
         username
-        email
-        posts {
-          _id
-        }
-        friends {
-          _id
-        }
-        workouts {
-          _id
-        }
-        programs {
-          _id
-        }
-      }
         email
         posts {
           _id
@@ -52,12 +35,14 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+export const ADD_POST = gql`
+  mutation addPost($postText: String!, $mediaUrl: String!, $visibility: Boolean, $workoutId: String,  ) {
+    addPost(postText: $postText, mediaUrl: $mediaUrl, visibility: $visibility, workoutId: $workoutId) {
       _id
-      thoughtText
-      thoughtAuthor
+      postText
+      postAuthor
+      mediaUrl
+      visibility
       createdAt
       comments {
         _id
@@ -78,18 +63,6 @@ export const ADD_COMMENT = gql`
         _id
         commentText
         createdAt
-      }
-    }
-  }
-`;
-
-export const FAVORITE_EXERCISE = gql`
-  mutation favoriteExercise($exerciseId: ID!) {
-    favoriteExercise(exerciseId: $exerciseId) {
-      _id
-      favorites {
-        _id
-        name
       }
     }
   }
@@ -143,6 +116,17 @@ export const CREATE_WORKOUT = gql`
             weight
           }
         }
+      }
+    }
+  }
+`;
+export const FAVORITE_EXERCISE = gql`
+  mutation favoriteExercise($exerciseId: ID!) {
+    favoriteExercise(exerciseId: $exerciseId) {
+      _id
+      favorites {
+        _id
+        name
       }
     }
   }

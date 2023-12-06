@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function HomeMenu () {
+export default function Homemenu () {
   return (
     <div className="d-flex flex-column pt-5 mt-4">
         <button className="menu-option bg-dark">Program Library NEEDS PAGE</button>
