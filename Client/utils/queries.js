@@ -131,6 +131,7 @@ export const QUERY_PUBLIC_WORKOUTS = gql`
   }
 `;
 
+
 export const QUERY_PUBLIC_PROGRAMS = gql`
 query GetAllPublicPrograms($originalId: String) {
   getAllPublicPrograms(originalId: $originalId) {

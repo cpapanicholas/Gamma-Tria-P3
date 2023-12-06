@@ -17,7 +17,6 @@ import ListGroup from 'react-bootstrap/ListGroup';export default function MyPost
     </ListGroup>
     <Card.Body>
       <Card.Link href="#">Card Link</Card.Link>
-      <Card.Link href="#">Another Link</Card.Link>
     </Card.Body>
   </Card>
   );

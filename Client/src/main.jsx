@@ -12,7 +12,8 @@ import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import Library  from './pages/LibraryPage.jsx';
 import CreatePost from './pages/createPost.jsx';
-// import DirectMessagePage  from './pages/DirectMessagePage.jsx';
+import FriendsList  from './pages/friendsPage';
+import ViewFriend  from './pages/FriendProfilePage.jsx';
 
 // dotenv.config();
 
@@ -57,11 +58,14 @@ const router = createBrowserRouter([
       //   path: '/program/:programId',
       //   element: <ProgramPage />
       // },
-      // {
-      //   path: '/DirectMessagePage',
-      //   element: <DirectMessagePage />
-      // },
-      
+      {
+        path: '/Friends',
+        element: < FriendsList/>
+      },
+      {
+        path: '/Friends/:friendId',
+        element: < ViewFriend/>
+      },
       
     ]
   },

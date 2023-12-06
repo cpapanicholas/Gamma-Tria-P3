@@ -286,19 +286,18 @@ const resolvers = {
     addFriend: async (parent, { friendId }, context) => {
       if (context.user) {
         const friend = await Friend.create({
-          userId: context.user._id,
-          friendId: friendId,
+          user1: context.user._id,
+          user2: friendId,
         });
-
+    
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { friends: friend._id } }
         );
-
+    
         return friend;
       }
-      throw AuthenticationError
-      ('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     },
 
     favoriteExercise: async (parent, { exerciseId }, context) => {
