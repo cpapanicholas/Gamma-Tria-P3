@@ -6,7 +6,15 @@ const VisibilityOptions = ['public', 'friends'];
 const postSchema = new Schema({
     username: {
         type: String,
-        required: true,
+    },
+    userId: {
+        type: String,
+    },
+    workoutId: {
+        type: String,
+    },
+    workoutName: {
+        type: String,
     },
     mediaUrl: {
         type: String,
@@ -14,20 +22,27 @@ const postSchema = new Schema({
     postText: {
         type: String,
     },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
     visibility: {
-        type: String,
-        enum: VisibilityOptions,
-        default: 'public', // Set a default visibility option
+        type: Boolean,
+        default: true, // true = public false = private
     },
     comments: [
         {
             username: {
                 type: String,
-                required: true,
+                
             },
-            comment: {
+            commentText: {
                 type: String,
-                required: true,
+                
+            },
+            createdAt: {
+                type: Date,
+                default: Date.now
             },
         },
     ],

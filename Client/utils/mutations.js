@@ -36,18 +36,11 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost($postText: String!, $mediaUrl: String!, $visibility: Boolean, $workoutId: String,  ) {
-    addPost(postText: $postText, mediaUrl: $mediaUrl, visibility: $visibility, workoutId: $workoutId) {
+  mutation Mutation($postInput: PostInput!) {
+    addPost(postInput: $postInput) {
       _id
-      postText
-      postAuthor
+      userId
       mediaUrl
-      visibility
-      createdAt
-      comments {
-        _id
-        commentText
-      }
     }
   }
 `;

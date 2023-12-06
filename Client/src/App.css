@@ -28,7 +28,9 @@ p {
   justify-content: space-around;
   padding-top: 1.5rem;
 }
-
+.psomething {
+  padding-top:150px
+}
 .toggle-container {
   display: flex;
   width: 100%;
@@ -276,4 +278,15 @@ p {
   top: 0;
   right: 0;
   padding: 15px 30px;
+}
+
+#captionBox{
+  height:4rem;
+  width:100%
+}
+
+#uploadedMedia{
+  height: 10rem;
+  width: 20rem;
+
 }

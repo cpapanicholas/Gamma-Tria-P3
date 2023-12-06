@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+// import dotenv from 'dotenv'
 import App from './App.jsx';
 import Home from './pages/HomePage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
@@ -10,7 +11,10 @@ import Signup from './pages/signup.jsx'
 import MyPrograms from './pages/MyProgramsPage.jsx';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 import Library  from './pages/LibraryPage.jsx';
+import CreatePost from './pages/createPost.jsx';
 // import DirectMessagePage  from './pages/DirectMessagePage.jsx';
+
+// dotenv.config();
 
 const router = createBrowserRouter([
   {
@@ -42,6 +46,9 @@ const router = createBrowserRouter([
       }, {
         path: '/library',
         element: <Library />
+      }, {
+        path: '/create',
+        element: <CreatePost />
       }, {
         path: '/workout/:workoutId',
         element: <WorkoutPage />

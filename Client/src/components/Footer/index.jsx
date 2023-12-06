@@ -11,6 +11,7 @@ export default function Footer ({ showMenu, setShowMenu}) {
   return (
     <div className='bg-dark d-flex justify-content-around fixed-bottom p-2'>
       <Link className='footer-icon' to={'/search'}><FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#ffffff",}} /></Link>
+      <Link className='footer-icon' to={'/create'}><FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#ffffff",}} /></Link>
       <Link className='footer-icon' to={'/calendar'}><FontAwesomeIcon icon={faCalendar} style={{color: "#ffffff",}} /></Link>
       <Link className='footer-icon' to={'/home'}><FontAwesomeIcon icon={faHouse} style={{color: "#ffffff",}} /></Link>
       <Link className='footer-icon' to={'/library'}><FontAwesomeIcon icon={faBookmark} style={{color: "#ffffff",}} /></Link>

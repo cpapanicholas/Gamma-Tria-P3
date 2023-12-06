@@ -177,22 +177,42 @@ const resolvers = {
 
       return { token, user };
     },
-    addPost: async (parent, { postText }, context) => {
-      if (context.user) {
-        const post = await Post.create({
-          postText,
-          postAuthor: context.user.username,
-        });
+    // addPost: async (parent,  {postInput}, context) => {
+    //   try {
+    //     const post = await Post.create({
+    //       postInput: postData
+    //     });
+    //     console.log(post);
+    //     // await User.findOneAndUpdate(
+    //     //   { _id: postData.userId },
+    //     //   { $addToSet: { posts: post._id } }
+    //     // );
+    
+    //     return post;
+    //   } catch (error) {
+    //     console.error(error)
+    //     throw new AuthenticationError('You need to be logged in!');
+    //   }
+    // },
+    addPost: async (_, { postInput }, context) => {
+      console.log('post created sent');
+      try {
+        // Assuming you're using Mongoose for MongoDB
+        const post = await Post.create(postInput);
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { posts: post._id } }
-        );
-
+        if (postInput.userId) {
+          await User.findOneAndUpdate(
+            { _id: postInput.userId },
+            { $addToSet: { posts: postInput._id } }
+          );
+        }
+    
         return post;
+      } catch (error) {
+        console.error(error)
+        console.error('Error creating post:', error.message);
+        throw new Error('Failed to create post');
       }
-      throw AuthenticationError;
-      ('You need to be logged in!');
     },
     addComment: async (parent, { postId, commentText }, context) => {
       if (context.user) {
