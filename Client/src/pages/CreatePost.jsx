@@ -34,7 +34,7 @@ export default function CreatePost() {
   const handleFilterChange = async (newFilter) => {
     const selectedWorkoutObject = dataFirst.getWorkoutsByUserId.find((workout) => workout._id === newFilter);
     const { name: updatedWorkoutName } = selectedWorkoutObject || {};
-    console.log('Updated Workout Name:', updatedWorkoutName);
+
 
     // Update state
     setWorkoutName(updatedWorkoutName);
@@ -52,8 +52,6 @@ export default function CreatePost() {
     await handleFilterChange(selectedWorkout);
 
     // Now, selectedWorkout and workoutName should be updated
-    console.log('Selected Workout:', selectedWorkout);
-    console.log('Workout Name:', workoutName);
 
     // Prepare the data to be submitted
     const postInput = {
@@ -65,12 +63,12 @@ export default function CreatePost() {
       userId: userInfo._id,
       username: userInfo.username
     };
-    console.log("postInput:" + postInput)
+
     try {
       const { data } = await addPost({
         variables: {postInput: postInput}
       });
-      console.log("Submitted post data:", data);
+      window.location.assign('/home');
     } catch (e) {
       console.error(e);
       console.error("Mutation error:", error.message);
@@ -125,6 +123,7 @@ export default function CreatePost() {
           <FileUpload onMediaUpload={handleMediaUpload} />
           <button onClick={handleSubmit}>Submit Post</button>
         </div>
+        
       ) : (
         ''
       )}
