@@ -19,5 +19,9 @@
   },
   "dependencies": {
     "react-calendar": "^4.6.1"
+  },
+  "engines": {
+    "node": "18.x",
+    "npm": "10.x"
   }
 }

@@ -4,6 +4,9 @@
   ## Description
   This project is a social media application that is centered around exercise.
   
+  ## LiveLink
+  LINK:
+
   ## Table of Contents
   - [Installation](#installation)
   - [Usage](#usage)
@@ -16,10 +19,10 @@
   To install copy the code to your designated folder and run npm i from the root and then run npm run build then npm run dev.
   
   ## Usage
-  To use sign up and start off by taking a look at all of the work outs and decide what you want to do for that day.
+  To use sign up and start off by taking a look at all of the work outs and decide what you want to do for that day.  From there if you want you can choose from our list of certified programs and you can create your own as well.  Then you can 
   
   ## Contributing
-  undefined
+  For contributions, please email any of us.
   
   ## Tests
   
