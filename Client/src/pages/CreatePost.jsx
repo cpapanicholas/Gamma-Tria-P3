@@ -68,7 +68,7 @@ export default function CreatePost() {
       const { data } = await addPost({
         variables: {postInput: postInput}
       });
-
+      window.location.assign('/home');
     } catch (e) {
       console.error(e);
       console.error("Mutation error:", error.message);
@@ -123,6 +123,7 @@ export default function CreatePost() {
           <FileUpload onMediaUpload={handleMediaUpload} />
           <button onClick={handleSubmit}>Submit Post</button>
         </div>
+        
       ) : (
         ''
       )}
