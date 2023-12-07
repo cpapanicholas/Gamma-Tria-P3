@@ -8,7 +8,9 @@ const FriendProfilePage = () => {
   // Fetch data for the specific friend using friendUsername
 
   return (
+    
     <div>
+  
       <h2>{friendUsername}'s Profile</h2>
       {/* Display friend's profile information */}
     </div>

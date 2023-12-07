@@ -85,8 +85,8 @@ export default function CreatePost() {
     <>
       <Header showMenu={showMenu} setShowMenu={setShowMenu} />
       {!loadingFirst ? (
-        <div className='psomething'>
-          {uploadedMediaUrl && <img src={uploadedMediaUrl} alt="Uploaded Media" id='uploadedMedia' />}
+        <div id='Pic-Card' className=' text-center  '>
+          {uploadedMediaUrl && <img className='create-post-img' src={uploadedMediaUrl} alt="Uploaded Media" id='uploadedMedia' />}
           <div>
             <input type="text" name="" id="captionBox" placeholder='Provide Caption for Photo' value={caption} onChange={(e) => setCaption(e.target.value)} />
           </div>

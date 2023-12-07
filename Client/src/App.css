@@ -294,3 +294,12 @@ p {
 .checkedIn{
   background-color: blue;
 }
+#Pic-Card {
+margin-top: 68px;
+height: 50%;
+}
+.create-post-img{
+  width: 50vw !important;
+
+
+}
