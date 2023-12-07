@@ -19,6 +19,7 @@ import ViewFriend  from './pages/FriendProfilePage.jsx';
 // import Chatroom from './pages/Chatbox.jsx'
 import ExercisePage from './pages/ExercisePage';
 import SettingsPage from './pages/SettingsPage.jsx';
+import SearchPage from './pages/SearchPage.jsx'
 
 
 // dotenv.config();
@@ -87,7 +88,12 @@ const router = createBrowserRouter([
       {
         path: '/settingsPage',
         element: < SettingsPage/>
+      },
+      {
+        path: '/searchPage',
+        element: < SearchPage/>
       }
+
       
     ]
   },

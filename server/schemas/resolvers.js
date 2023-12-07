@@ -154,9 +154,19 @@ const resolvers = {
         throw new Error('Error fetching exercises');
       }
     },
+    search: async (_, { searchTerm }) => {
+      // Implement your search logic here and return the results
+      // Example: search in your User, Post, Workout, or other collections
+      const users = await User.find();
+      const posts = await Post.find();
+      const workouts = await Workout.find();
+  
+      // Combine the results and return them
+      const searchResults = [...users, ...posts, ...workouts];
+  
+      return searchResults;
+    },
   },
-
-
 
   Mutation: {
     changeUserStatus: async (parent, { statusChangeInput }) => {
