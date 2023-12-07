@@ -21,7 +21,8 @@ const postSchema = new Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        get: (timestamp) => timestamp.toLocaleString(),
     },
     visibility: {
         type: Boolean,
@@ -43,7 +44,8 @@ const postSchema = new Schema({
             },
             createdAt: {
                 type: Date,
-                default: Date.now
+                default: Date.now,
+                get: (timestamp) => timestamp.toLocaleString(),
             },
             postId: {
                 type: String
@@ -51,6 +53,7 @@ const postSchema = new Schema({
         },
     ],
 });
+
 
 const Post = model('Post', postSchema);
 

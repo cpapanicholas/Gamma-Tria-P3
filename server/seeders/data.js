@@ -818,19 +818,21 @@ const programNames = [
   'Athletic Performance Boost',
   'Mindful Movement Program',
 ];
-const MediaUrl = [
-  'https://images.app.goo.gl/bVGsSemj8LAeJmwx5',
-  'https://images.app.goo.gl/CFav9ZARkz71meW77',
-  'https://images.app.goo.gl/heKRzsk49SkWNujX8',
-  'https://images.app.goo.gl/htcxpbsSUTTM2HL4A',
-  'https://images.app.goo.gl/TUCoRT8Srhmgybdf9',
-  'https://images.app.goo.gl/VaU93nMUMZWKBQCRA',
-  'https://images.app.goo.gl/rPoDWvMQoooZZoRL9',
-  'https://images.app.goo.gl/X2k8GB6bUYo3P4rL6',
-  'https://images.app.goo.gl/XhcdGRUYzEtNkRhS8',
-  'https://images.app.goo.gl/MhhS3bDyP77QuKTXA',
-  'https://images.app.goo.gl/BnigbjEcocUjJXSJ6',
-  'https://images.app.goo.gl/Yfux6rEW6DHNWsb46',
+const mediaUrl = [
+  'https://t4.ftcdn.net/jpg/01/79/81/77/360_F_179817756_QzTocli57q9G6a1Oe7kJtoMS5dNMU8cl.jpg',
+  'https://as1.ftcdn.net/v2/jpg/02/00/87/86/1000_F_200878690_TcNFVjD7FqAR9gADMZrG8ygXQq86oVi7.jpg',
+  'https://as1.ftcdn.net/v2/jpg/03/08/72/80/1000_F_308728099_AdWDcjBTazzfGCAvb54HuWmaTmbd9Xi9.jpg',
+  'https://t4.ftcdn.net/jpg/01/74/21/25/240_F_174212531_cerVf4uP6vinBWieBB46p2P5xVhnsNSK.jpg',
+  'https://t3.ftcdn.net/jpg/00/95/32/40/240_F_95324016_YSrMJOWsBGMbRiUrYL31JNRtxBREPAAo.jpg',
+  'https://t3.ftcdn.net/jpg/01/64/71/26/240_F_164712654_z7aFZvAhX0WFJjosS04qcMvjkNcJXtdN.jpg',
+  'https://t3.ftcdn.net/jpg/03/14/89/52/240_F_314895284_4Fc8f6bMMtls1iG5vCClOQhYyEzM4xky.jpg',
+  'https://t3.ftcdn.net/jpg/02/56/65/32/240_F_256653232_BuwWMqvrv57JD0zbHFJI6dbRngelDLgF.jpg',
+  'https://t4.ftcdn.net/jpg/03/09/97/55/240_F_309975507_OZK8uQHIdKUfSOnMqfXX2B8NPFPMrpq5.jpg',
+  'https://t4.ftcdn.net/jpg/01/37/40/83/240_F_137408357_CexBRuseaKpSNFoJD2bdj786NuEqfNvi.jpg',
+  'https://t3.ftcdn.net/jpg/01/92/95/22/240_F_192952278_Hlkr1A8ekKUVTDsS31tytDEeABcy7lXF.jpg',
+  'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXZsYzd3MnhmZnAyeTMzYzlidHdzcmIxd2N2ZmlyM3d1eHFoYTVsdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oriNZoNvn73MZaFYk/giphy.gif',
+  'https://media4.giphy.com/media/3oKHWwyFAfFmIL2iXe/200.webp?cid=ecf05e477xwn33kh585xhqlna0atn6zsgvdkrqmy7mcyx5po&ep=v1_gifs_related&rid=200.webp&ct=g',
+  'https://media.tenor.com/PvPV2tY77O0AAAAd/lift-weight-lifting.gif'
 ]
 
 const programDescriptions = [
@@ -940,13 +942,17 @@ const getRandomPosts = () => {
 };
 
 const getRandomComment = () => {
-  const int = Math.floor(Math.random() * 4)
+  const int = Math.floor(Math.random() * 25)
   const results = [];
   for (let i = 0; i < int; i++) {
     results.push(getRandomArrItem(comments)
     );
   }
   return results;
+}
+
+const getRandomMediaURL = () => {
+  return getRandomArrItem(mediaUrl);
 }
 
 const createUser = () => {
@@ -972,4 +978,4 @@ const randomProgramName = () => {
   return getRandomArrItem(programNames)
 } 
 // Export the functions for use in seed.js
-module.exports = { randomProgramDescription, randomProgramName, workoutChoices, createWorkout, createUser, getRandomPosts, getRandomComment, getRandomArrItem, getRandomNumber };
+module.exports = { getRandomMediaURL, randomProgramDescription, randomProgramName, workoutChoices, createWorkout, createUser, getRandomPosts, getRandomComment, getRandomArrItem, getRandomNumber };

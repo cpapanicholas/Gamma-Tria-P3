@@ -1,7 +1,7 @@
 const { describe } = require('node:test');
 const connection = require('../config/connection');
 const { User, Post, Friend, Program, Workout } = require('../models');
-const { createWorkout, createUser, getRandomPosts, getRandomComment, getRandomArrItem, getRandomNumber, workoutChoices, randomProgramDescription, randomProgramName } = require('./data');
+const { getRandomMediaURL, createWorkout, createUser, getRandomPosts, getRandomComment, getRandomArrItem, getRandomNumber, workoutChoices, randomProgramDescription, randomProgramName } = require('./data');
 
 connection.on('error', (err) => err);
 
@@ -71,9 +71,16 @@ connection.once('open', async () => {
 
   users.forEach(user => {
       const randomPosts = getRandomPosts()
+      
       randomPosts.forEach(post => {
+        const randomWorkout = getRandomArrItem(workouts)
+        const randomMedia = getRandomMediaURL()
         posts.push({
+          mediaUrl: randomMedia,
           postText: post,
+          workoutId: randomWorkout._id,
+          workoutName: randomWorkout.name,
+          userId: user._id,
           username: user.username,
         })
       });
@@ -91,10 +98,12 @@ connection.once('open', async () => {
     const randomComments = getRandomComment()
     for (let i = 0; i < randomComments.length; i++) {
       const body = {
-        commentBody: randomComments[i],
+        commentText: randomComments[i],
         username: user.username,
+        userId: user._id,
+        postId: post._id
       };
-      await User.findOneAndUpdate(
+      await Post.findOneAndUpdate(
         { _id: post._id },
         { $addToSet: { comments: body } },
         { new: true }

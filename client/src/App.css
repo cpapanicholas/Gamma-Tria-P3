@@ -8,7 +8,7 @@ p {
 }
 
 .message-icon {
-  font-size: 36px;
+  font-size: 34px;
   padding-top: .8rem;
 }
 
@@ -53,7 +53,7 @@ p {
 } */
 
 .footer-icon {
-  font-size: 35px;
+  font-size: 34px;
 }
 
 .feed-post {
@@ -296,6 +296,96 @@ p {
 }
 
 .post-card {
-  width: 100vw;
+  width: 100%;
   max-width: 500px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid black; 
+  padding-bottom: 20px;
+}
+
+.post-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.padding-from-header {
+  padding-top: 100px;
+}
+
+.post-text {
+  padding: 10px;
+}
+
+.add-comment {
+  border: none;
+  background-color: transparent;
+  display: block;
+  flex: 1;
+}
+
+.add-comment-btn {
+  border-radius: 4px;
+}
+
+.block {
+  display: block;
+}
+
+.view-comments-btn {
+  border: none;
+  background-color: transparent;
+  display: block;
+}
+
+.submit-comment-btn {
+  border: none;
+  border-radius: 4px;
+}
+
+.comment {
+  color: black;
+  word-wrap: break-word;
+}
+
+.inline {
+  display: inline;
+}
+
+.comment-author {
+  text-decoration: none;
+  font-weight: 650;
+  color: black;
+}
+
+.comment-time {
+  text-align: end;
+}
+
+.post-card-workout-title {
+  color: black;
+  text-decoration: none;
+}
+
+.add-comment:focus {
+  outline:none
+}
+
+.comments-header {
+  text-align: center;
+}
+
+.modal-content {
+  height: 400px!important;
+  overflow: auto;
+  position: relative;
+  /* padding-bottom: 50px; */
+}
+
+.comment-form {
+  /* position: fixed; */
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
