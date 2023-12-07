@@ -18,7 +18,12 @@
     "graphql": "^16.6.0",
     "graphql-upload": "^16.0.2",
     "jsonwebtoken": "^8.5.1",
+<<<<<<< HEAD
     "mongoose": "^8.0.2",
+=======
+    "mongodb": "^6.3.0",
+    "mongoose": "^7.0.2",
+>>>>>>> 09e0af09f5e1dccdc39aeb6d743987fb0c3b5861
     "multer": "1.4.5-lts.1",
     "validator": "^13.11.0"
   },
