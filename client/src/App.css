@@ -294,3 +294,8 @@ p {
 .checkedIn{
   background-color: blue;
 }
+
+.post-card {
+  width: 100vw;
+  max-width: 500px;
+}

@@ -1,4 +1,4 @@
-import MyPostCard from "./MyPostCard";
+import PostCard from "./MyPostCard";
 import MyPosts from "./MyPosts"; 
 
 export default function Feed ({ posts }) {
@@ -6,7 +6,7 @@ export default function Feed ({ posts }) {
     <div className="d-flex flex-column py-5 my-4">
       <div className="d-flex flex-column py-5 my-4">
       {/* Render MyPosts component here */}
-      {posts.map((post) => <MyPostCard post={post}/>)}
+      {posts.map((post) => <PostCard post={post}/>)}
       
       {/* Other feed content */}
       </div>

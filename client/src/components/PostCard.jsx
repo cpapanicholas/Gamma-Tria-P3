@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';import { useMutation } from '@apollo/cli
 import { ADD_COMMENT } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
-export default function MyPostCard({ post }) {
+export default function PostCard({ post }) {
   const [commentText, setCommentText] = useState('');
   const userInfo = Auth.getProfile();
 
@@ -38,49 +38,16 @@ export default function MyPostCard({ post }) {
   };
 
   return (
-    // <Card>
-    //   <Card.Body>
-    //     <Card.Title>
-    //       <h2>{post.username}</h2>
-    //     </Card.Title>
-    //     {post.workoutId ? (
-    //       <Link to={`/workout/${post.workoutId}`}>{post.workoutName}</Link>
-    //     ) : (
-    //       ''
-    //     )}
-    //     {post.mediaUrl ? <Card.Img variant="top" src={post.mediaUrl} /> : ''}
-    //     <Card.Text>{post.postText}</Card.Text>
-    //   </Card.Body>
-    //   <div>
-    //     <h5>Comments</h5>
-    //     {post.comments ? post.comments.map((comment, index) => (
-    //       <div key={index}>
-    //         <p>{comment.commentText}</p>
-    //         <p>{comment.username}</p>
-    //         <p>{comment.createdAt}</p>
-    //         <p>{comment.userId}</p>
-    //       </div>
-    //     )) : ' '}
-    //     <form onSubmit={handleCommentSubmit}>
-    //       <input
-    //         type="text"
-    //         placeholder="Add a comment..."
-    //         value={commentText}
-    //         onChange={(e) => setCommentText(e.target.value)}
-    //       />
-    //       <button type="submit">Submit</button>
-    //     </form>
-    //   </div>
-    // </Card>
-
     <div className='post-card'>
       <div>
+        <div>
           <h2>{post.username}</h2>
-        {post.workoutId ? (
-          <Link to={`/workout/${post.workoutId}`}>{post.workoutName}</Link>
-        ) : (
-          ''
-        )}
+          {post.workoutId ? (
+            <Link to={`/workout/${post.workoutId}`}>{post.workoutName}</Link>
+          ) : (
+            ''
+          )}
+        </div>
         {post.mediaUrl ? <Card.Img variant="top" src={post.mediaUrl} /> : ''}
         <Card.Text>{post.postText}</Card.Text>
       </div>
