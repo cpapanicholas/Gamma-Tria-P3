@@ -13,7 +13,7 @@ export const FETCH_EXERCISES = gql`
     }
   }
 `;
-const API_KEY = 'IO1Gpk9XilH6IN1n7chKnA==XLJdLDmRTfKqjX63'
+
 // Function to fetch exercises
 export const fetchExercises = async (term) => {
   // Implement GraphQL query execution logic here
@@ -21,7 +21,7 @@ export const fetchExercises = async (term) => {
 
     const response = await fetch(`https://api.api-ninjas.com/v1/exercises?muscle=${term}`, {
       headers: {
-        'X-Api-Key': API_KEY
+        'X-Api-Key': process.env.API_KEY
       }
     })
    
