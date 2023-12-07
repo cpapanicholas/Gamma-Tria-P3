@@ -10,7 +10,7 @@ import Auth from '../../utils/auth';
 export default function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN);
-  const {setCurrentUser, setFruit} = useUserContext()
+  const {setCurrentUser} = useUserContext()
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -25,20 +25,16 @@ export default function Login(props) {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log({...formState});
     try {
       const { data } = await login({
         variables: formState,
       });
-      console.log(data.login);
       setCurrentUser(data.login)
       Auth.login(data.login.token);
-      console.log(Auth.getProfile());
     } catch (e) {
       console.error(e);
     }
     
-    setFruit("banana");
     // clear form values
     setFormState({
       email: '',

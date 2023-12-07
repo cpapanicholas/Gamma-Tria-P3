@@ -208,23 +208,6 @@ const resolvers = {
 
       return { token, user };
     },
-    // addPost: async (parent,  {postInput}, context) => {
-    //   try {
-    //     const post = await Post.create({
-    //       postInput: postData
-    //     });
-    //     console.log(post);
-    //     // await User.findOneAndUpdate(
-    //     //   { _id: postData.userId },
-    //     //   { $addToSet: { posts: post._id } }
-    //     // );
-    
-    //     return post;
-    //   } catch (error) {
-    //     console.error(error)
-    //     throw new AuthenticationError('You need to be logged in!');
-    //   }
-    // },
     addPost: async (_, { postInput }, context) => {
       console.log('post created sent');
       try {

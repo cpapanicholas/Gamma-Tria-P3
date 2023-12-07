@@ -11,8 +11,10 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ALL_POSTS } from '../../utils/queries';
 
 export default function HomePage() {
+  Auth.checkLoggedIn()
   const [showMenu, setShowMenu] = useState(false);
   const userInfo = Auth.getProfile();
+  console.log(userInfo);
 
   const { loading, error, data } = useQuery(QUERY_ALL_POSTS); 
   console.log(data);

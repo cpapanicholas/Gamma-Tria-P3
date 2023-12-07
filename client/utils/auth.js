@@ -36,6 +36,13 @@ class AuthService {
     localStorage.removeItem('userInfo');
     window.location.reload();
   }
+
+  checkLoggedIn() {
+    const isLoggedIn = this.loggedIn()
+    if (!isLoggedIn) {
+      window.location.assign('/login');
+    }
+  }
 }
 
 export default new AuthService();

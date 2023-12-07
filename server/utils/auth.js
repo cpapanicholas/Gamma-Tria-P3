@@ -26,7 +26,7 @@ module.exports = {
       req.user = data;
     } catch {
       console.log('Invalid token');
-      console.error('Token verification failed:', error.message);
+      console.error('Token verification failed:', error.message, error);
     }
 
     return req;
