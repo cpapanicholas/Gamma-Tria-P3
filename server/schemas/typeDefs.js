@@ -210,6 +210,9 @@ const typeDefs = `
     userId: ID!
     username: String!
   }
+  type SearchResult {
+    _id: ID
+  }
 
   type Mutation {
     updateWorkout(workoutId: ID!, updatedWorkout: WorkoutInput!): Workout
@@ -242,6 +245,7 @@ const typeDefs = `
     getWorkoutByOriginalId(originalId: ID!): Workout
     getProgramsByByUser(userId: ID!): [Program]
     getAllExercises: [Exercise]!
+    search(searchTerm: String!): [SearchResult]
   }
   `;
   

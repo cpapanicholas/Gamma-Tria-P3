@@ -117,6 +117,14 @@ export const QUERY_GET_ALL_PROGRAMS = gql`
   }
 `;
 
+export const QUERY_SEARCH = gql`
+  query Search {
+    getAllPrograms {
+      _id
+    }
+  }
+`;
+
 export const QUERY_USER_WITH_WORKOUT_INFO = gql`
   query GetUserWithWorkoutInfo($id: ID!) {
     getUserWithWorkoutInfo(_id: $id) {
