@@ -52,13 +52,12 @@ export default function Login(props) {
         <div className="card">
           <h4 className="card-header bg-dark text-light p-2">Login</h4>
           <div className="card-body">
-            <Link to={'/home'}>home</Link>
             {data ? (
               ''
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form onSubmit={handleFormSubmit} className='d-flex flex-column'>
                 <input
-                  className="form-input"
+                  className="form-input form-control mt-2"
                   placeholder="Your email"
                   name="email"
                   type="email"
@@ -66,7 +65,7 @@ export default function Login(props) {
                   onChange={handleChange}
                 />
                 <input
-                  className="form-input"
+                  className="form-input form-control mt-2"
                   placeholder="******"
                   name="password"
                   type="password"
@@ -74,7 +73,7 @@ export default function Login(props) {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-primary"
+                  className="btn btn-block btn-primary mt-2"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
@@ -82,7 +81,9 @@ export default function Login(props) {
                 </button>
               </form>
             )}
-            <Link to={'/signup'}>signup</Link>
+            <div className='d-flex justify-content-center'>
+              <Link className='btn btn-block btn-primary mt-2' to={'/signup'}>signup</Link>
+            </div>
             {error && (
               <div className="my-3 p-3 bg-danger text-white">
                 {error.message}
