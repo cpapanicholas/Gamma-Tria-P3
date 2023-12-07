@@ -5,7 +5,10 @@
   This project is a social media application that is centered around exercise.
   
   ## LiveLink
-  LINK:
+  LINK: https://dry-dawn-47044-05eae3f689ab.herokuapp.com/
+
+  ## SS
+  ![ScreenShot](./Screenshot%202023-12-06%20210554.png)
 
   ## Table of Contents
   - [Installation](#installation)
@@ -31,6 +34,6 @@
   This project is licensed under the MIT License.
   
   ## Questions
-  - GitHub: [cpapanicholas](https://github.com/cpapanicholas)
-  - Email: cpapanicholas@gmail.com
+  - GitHub: [cpapanicholas, CjCabrera1, Seidler93, Tarsum67](https://github.com/cpapanicholas)
+  - Email: cpapanicholas@gmail.com, tarsum935@gmail.com, cjcabrera0125@gmail.com, ajseidler0526@gmail.com
     
